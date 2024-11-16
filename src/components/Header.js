@@ -1,19 +1,16 @@
+// src/components/Header.js
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
 
-function Header() {
+
+const Header = ({ toggleSidebar }) => {
     return (
-        <Navbar bg="dark" variant="dark" expand="lg">
-            <Navbar.Brand href="/dashboard">Dashboard</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="ml-auto">
-                    <Nav.Link href="/dashboard/profile">Profile</Nav.Link>
-                    <Nav.Link href="/">Logout</Nav.Link>
-                </Nav>
-            </Navbar.Collapse>
-        </Navbar>
+        <header className="header">
+            <button className="global-header__menu-button back-button" onClick={toggleSidebar}>
+                ☰ Menu
+            </button>
+            <h1 className="header-title">K-Link</h1>
+        </header>
     );
-}
+};
 
 export default Header;

@@ -4,7 +4,7 @@ import DashboardLayout from './layouts/DashboardLayout';
 import DashboardPage from './views/Dashboard/DashboardPage';
 import ProfilePage from './views/Profile/ProfilePage';
 import SettingsPage from './views/Settings/SettingsPage';
-import Sidebar from './components/SideBar';
+import Sidebar from './components/Sidebar';
 
 function App() {
     return (
