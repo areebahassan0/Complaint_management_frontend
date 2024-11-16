@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-function App() {
+import ComplaintHome from './components/ComplaintHome';
+// import CategorySelection from './components/CategorySelection';
+// import ComplaintForm from './components/ComplaintForm';
+
+function App()
+{
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <Routes>
+        <Route path="/complaints" element={<ComplaintHome />}/>
+        {/* <Route path="/complaints/:category" element={<ComplaintCategory/>}/> */}
+        {/* <Route path="/complaints/:category/:type" element={<ComplaintForm />}/> */}
+      </Routes>
+    </Router>
+  )
 }
-
 export default App;
