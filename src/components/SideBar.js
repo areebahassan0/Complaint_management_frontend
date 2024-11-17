@@ -1,21 +1,32 @@
 import React from 'react';
 
-
 const Sidebar = ({ isOpen, toggleSidebar }) => {
-    return (
-        <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
-            <button className="global-header__menu-button back-button" onClick={toggleSidebar}>
-                ☰ Back
-            </button>
-            <ul className="sidebar-menu">
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/dashboard/lodge-complaint">Lodge a Complaint</a></li>
-                <li><a href="/dashboard/track-complaint">Track Complaint</a></li>
-                <li><a href="/dashboard/complaints-history">Complaint History</a></li>
-                <li><a href="/settings">Settings</a></li>
-            </ul>
-        </aside>
-    );
+  return (
+    <>
+      {/* Overlay to create blur and darker background */}
+      {isOpen && <div className="overlay" onClick={toggleSidebar}></div>}
+        
+            {/* Sidebar content */}
+            <aside className={`sidebar ${isOpen ? "open" : ""}`}>
+                <header className='global-header'>
+                    <button
+                    className="global-header__back"
+                    onClick={toggleSidebar}
+                    >
+                    ☰ Back
+                    </button>
+                </header>
+        <ul className="sidebar-menu">
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="/dashboard/lodge-complaint">Lodge a Complaint</a></li>
+          <li><a href="/dashboard/track-complaints">Track Complaint</a></li>
+          <li><a href="/dashboard/complaints-history">Complaint History</a></li>
+          <li><a href="/settings">Settings</a></li>
+        </ul>
+      </aside>
+    </>
+  );
 };
 
 export default Sidebar;
+

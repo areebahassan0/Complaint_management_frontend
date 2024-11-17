@@ -7,17 +7,25 @@ const DashboardPage = () => {
 
     return (
         <DashboardLayout>
-            <div className="dashboard-content">
-                <h2>Welcome to the Complaint Management System</h2>
-                <p>Pick one:</p>
-                <div className="buttons">
-                    <button onClick={() => navigate('/dashboard/lodge-complaint')}>Lodge a Complaint</button>
-                    <button onClick={() => navigate('/dashboard/track-complaint')}>Track a Complaint</button>
-                    <button onClick={() => navigate('/dashboard/complaints-history')}>Complaints History</button>
-                </div>
+          <div className="dashboard-content">
+            <h2 className="custom-text">Your Voice Matters – File Complaints Quickly and Efficiently</h2>
+      
+            <div class="button-container">
+                
+                    <button class="button-74" role="button" onclick="navigate('/dashboard/lodge-complaint')">Lodge your complaint</button>
+
+                    <button class="button-74" role="button" onclick="navigate('/dashboard/track-complaint')">Track your complaint</button>
+                
+                    <button class="button-74" role="button" onclick="navigate('/dashboard/complaints-history')">View Complaint History</button>
+               
             </div>
+
+
+        </div>
         </DashboardLayout>
     );
+
+      
 };
 
 export default DashboardPage;

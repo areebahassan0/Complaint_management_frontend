@@ -1,197 +1,264 @@
-/* General Styles */
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  color: rgb(94, 230, 230);
-  background-color: #190346;
-  -webkit-tap-highlight-color: transparent;
-  display: block;
-  margin: 150px;
+.custom-text {
+  box-sizing: border-box;
+  color: rgb(96, 240, 248); /* Text color */
+  display: block; /* Ensures block-level element */
+  font-family: 'Chromatophore', Helvetica, Arial, sans-serif; /* Font family */
+  font-size: 50px; /* Font size */
+  font-style: normal; /* Regular font style */
+  font-weight: 400; /* Font weight */
+  height: 150px; /* Element height */
+  letter-spacing: -2px; /* Letter spacing */
+  line-height: 75px; /* Line height */
+  margin-top: 24px; /* Adjust space above the title */
+  margin-left: 20px; /* Align with "Menu" button */
+  margin-right: auto; /* Prevent stretching too far to the right */
+  text-align: left; /* Align text to the left */
+  max-width: 60%; /* Restrict width from the right-hand side */
+  -webkit-font-smoothing: antialiased; /* Enhance rendering */
 }
 
-body {
-  font-family: Chromatophore, helvetica, arial, sans-serif;
-  font-size: 1.8rem;
-  font-style: normal;
-  font-weight: 300;
-  line-height: 2.7rem;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
-
-/* Header */
-.header {
-  height: 15%;
+/* Header styles */
+.global-header {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 50;
   width: 100%;
-  box-sizing: border-box;
-  display: block;
-  background-color: rgb(16, 0, 48);
-  unicode-bidi: isolate;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-.menu-button {
-  padding: .6rem 1.3rem;
-  margin: 1.4rem 1.5rem;
-  font-weight: 400;
-  background: 0 0;
-  border: .2rem solid #100030;
-  border-radius: .8rem;
-  outline: 0;
-  transition: all 80ms ease-in-out;
-  transition-property: background-color, border-color;
   display: flex;
+  justify-content: space-between; /* Adjusts spacing between children */
   align-items: center;
-  min-width: 11.6rem;
-}
-/* Back Button */
-/* Back Button */
-.back-button {
-  position: absolute; /* Keep it fixed in the sidebar */
-  top: 10px; /* Adjust placement to avoid overlapping */
-  left: 20px;
+  height: 13%;
+  background-color: #24023d;
+  padding: 0 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
-/* Sidebar */
+
+.global-header__menu {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  outline: none;
+  padding: 10px 20px; /* Elongates the button */
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.global-header__menu:hover {
+  border: 3px solid rgb(220, 83, 220);
+  border-radius: 3px;
+}.global-header__back {
+  position: fixed; /* Fixed to the viewport, outside the header */
+  top: 10px; /* Slightly below the top of the viewport */
+  left: 20px; /* Adjust to align with the menu button's position */
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  outline: none;
+  padding: 10px 20px; /* Consistent padding with the menu button */
+  transition: all 0.3s ease;
+  color: white;
+  z-index: 1500; /* Ensure it's above other elements */
+}
+
+.global-header__back:hover {
+  border: 3px solid rgb(220, 83, 220);
+  border-radius: 3px;
+}
+
+
+.global-header__logo {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 1.9rem;
+  font-weight: bold;
+  color: white;
+}
+
+.global-header__account {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: white;
+  gap: 8px; /* Adds space between the icon and text */
+  margin-right: 15px; /* Slightly moves the account to the left */
+  cursor: pointer;
+  padding: 10px 15px; /* Makes the hover area larger */
+  transition: all 0.3s ease;
+}
+
+.global-header__account-icon {
+  width: 24px; /* Adjust size */
+  height: 24px; /* Adjust size */
+  fill: azure; /* Matches the SVG fill color */
+}
+
+.global-header__account:hover {
+  border: 3px solid rgb(220, 83, 220);
+  border-radius: 3px;
+}
+
+
+/* Add space below the fixed header */
+.content {
+  margin-top: 13%; /* Matches the header height */
+}
+/* Sidebar Styles */
 .sidebar {
   position: fixed;
-  top: 0;
-  left: -250px;
-  width: 250px;
+  top: 13%; /* Below the header */
+  left: 0;
+  width: 100%;
   height: 100%;
-  background-color: #081836; /* Match header color */
-  transition: all 0.3s ease;
-  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   padding: 20px;
-  overflow-y: auto;
-  padding-top: 80px; /* Adjust for Back button height */
+  backdrop-filter: blur(8px); /* Blurs content behind */
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1500;
 }
 
 .sidebar.open {
-  left: 0;
+  visibility: visible;
+  opacity: 1;
+}
+
+.sidebar .back-button {
+  font-size: 1.4rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .sidebar-menu {
   list-style: none;
   padding: 0;
-  margin: 0;
+  width: 100%;
 }
 
 .sidebar-menu li {
-  margin: 15px 0;
+  margin: 20px 0;
 }
 
-.sidebar-menu li a {
-  color: white;
+.sidebar-menu a {
   text-decoration: none;
-  display: block;
-}
-
-.sidebar-menu li a:hover {
-  text-decoration: underline;
-}
-
-/* Menu and Back Button Styles */
-.global-header__menu-button {
-  padding: 0.6rem 1.3rem;
-  margin: 1.4rem 1.5rem;
-  font-weight: 400;
-  background: none;
-  border: 0.2rem solid #100030;
-  border-radius: 0.4rem;
-  outline: none;
-  transition: all 80ms ease-in-out;
-  transition-property: background-color, border-color;
-  display: flex;
-  align-items: center;
-  min-width: 11.6rem;
+  font-size: 1.5rem;
   color: white;
-  cursor: pointer;
-  justify-content: center; /* Center the button text */
-}
-
-.global-header__menu-button:hover {
-  background-color :border; color: rgba(223, 51, 209, 0.164);
-}
-
-
-.header-title {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  padding: 0.3rem 2rem 0;
-  border: 0.2rem solid transparent;
-  border-radius: 0.8rem;
-  transition: border-color 80ms ease-in-out;
-  font-size: 1.5rem; /* Adjust font size as needed */
-  color: white;
-}
-
-.header h1 {
-  margin: 0;
-  color: white;
-
-}
-
-.header .menu-button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
-  left: 20px;
-}
-
-
-
-/* Blur Effect */
-.content.blur {
-  filter: blur(50px);
-}
-
-/* Dashboard Content */
-.dashboard-content {
-  padding: 20px;
-  text-align: center;
-}
-
-.dashboard-content h2 {
-  margin-top: 20px;
-}
-
-.dashboard-content .buttons {
-  margin-top: 30px;
-}
-
-.dashboard-content button {
-  background-color: #081836;
-  color: white;
-  border: none;
   padding: 10px 20px;
-  margin: 10px;
-  cursor: pointer;
   border-radius: 5px;
-  font-size: 16px;
   transition: background-color 0.3s ease;
 }
 
-.dashboard-content button:hover {
-  background-color: #0a1f44;
+.sidebar-menu a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
-  .header h1 {
-      font-size: 18px;
-  }
+/* Main Content Styles */
+.dashboard-content {
+  margin-top: 13%; /* Accounts for the fixed header height */
+  padding: 20px;
+  transition: filter 0.3s ease;
+}
 
-  .dashboard-content button {
-      font-size: 14px;
-      padding: 8px 16px;
+.dashboard-content.blur {
+  filter: blur(8px);
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(36, 2, 61, 0.6); /* Slightly darkens background */
+  backdrop-filter: blur(8px);
+  z-index: 1400; /* Below the sidebar */
+}
+/* Body styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #14014d; /* Dark blue */
+  color: rgb(240, 255, 255); /* Light text color */
+  font-family: Arial, sans-serif;
+}
+
+/* Dashboard content */
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15%; /* Adjusts spacing below the header */
+  padding: 20px;
+}
+
+/* Title styles */
+.dashboard-title {
+  font-size: 2.5rem; /* Larger font size for emphasis */
+  font-weight: bold; /* Makes the text bold */
+  text-align: left; /* Aligns the text to the left */
+  margin-bottom: 90px; /* Adds space below the title */
+  max-width: 50%; /* Restricts title width to 60% */
+  line-height: 1; /* Adds better line spacing */
+} 
+.button-container {
+  display: flex;
+  margin-top: 6%;
+  flex-direction: row; /* Stack buttons vertically */
+  align-items: center; /* Center the buttons horizontally */
+  gap: 20px; /* Space between buttons */
+}
+
+.button-74 {
+  background-color: #f5f0f5;
+  border: 1px solid #d821cc;
+  border-radius: 50px;
+  box-shadow: #e234f2 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 300px; /* Ensures all buttons have the same width */
+  max-width: 100%; /* Prevents buttons from overflowing container */
+ 
+}
+
+.button-74:hover {
+  border: 4px solid rgb(220, 83, 220);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+ 
+}
+
+.button-74:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .button-74 {
+    min-width: 150px;
+    padding: 0 25px;
   }
 }

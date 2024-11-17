@@ -5,7 +5,8 @@ import DashboardPage from './views/Dashboard/DashboardPage';
 import ProfilePage from './views/Profile/ProfilePage';
 import SettingsPage from './views/Settings/SettingsPage';
 import Sidebar from './components/Sidebar';
-
+import HistoryTable from './views/Complains/ComplainHistory/HistoryTable';
+import TrackComplaints from './views/Complains/TrackComplain/TrackComplain';
 function App() {
     return (
         <Router>
@@ -15,7 +16,8 @@ function App() {
               <Route path="/dashboard"  element= {<DashboardLayout><DashboardPage/></DashboardLayout>}></Route>
               <Route path="/dashboard/profile"  element= {<DashboardLayout><ProfilePage/></DashboardLayout>}></Route>
               <Route path="/dashboard/settings"  element= {<DashboardLayout><SettingsPage/></DashboardLayout>}></Route>
-
+              <Route path="/dashboard/complaints-history"  element= {<DashboardLayout><HistoryTable/></DashboardLayout>}></Route>  
+              <Route path="/dashboard/track-complaints"  element= {<DashboardLayout><TrackComplaints/></DashboardLayout>}></Route>  
               {/* Redirect to Dashboard */}
               <Route path="*" element={<Navigate to="/dashboard" />} />
             </Routes>
