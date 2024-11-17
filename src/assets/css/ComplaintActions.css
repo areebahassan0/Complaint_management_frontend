@@ -1,0 +1,120 @@
+.complaint-form-page {
+  background-color: #1a0037; /* Dark purple background */
+  color: #00e7ff; /* Neon blue text */
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 10px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #00e7ff; /* Neon blue text */
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #00e7ff;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.option-button {
+  background: transparent;
+  border: 2px solid #ff00ff; /* Pink outline for buttons */
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.option-button.active,
+.option-button:hover {
+  background: #ff00ff; /* Pink background */
+  color: #fff; /* White text */
+  box-shadow: 0 0 15px #ff00ff; /* Neon glow */
+}
+
+.form-container {
+  background: #29005f; /* Slightly lighter purple form background */
+  padding: 20px;
+  border-radius: 10px;
+  text-align: left;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #00e7ff; /* Neon blue text */
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ff00ff; /* Pink border */
+  border-radius: 5px;
+  background: #330066; /* Deep purple input background */
+  color: #fff; /* White input text */
+  font-size: 1rem;
+}
+
+textarea {
+  resize: none;
+}
+
+input[type="file"] {
+  padding: 0;
+  background: none;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #ff00ff; /* Pink focus border */
+  box-shadow: 0 0 5px #ff00ff; /* Neon glow on focus */
+}
+
+.submit-button {
+  background-color: #ff00ff; /* Pink button background */
+  color: #fff; /* White text */
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 10px #ff00ff; /* Neon glow */
+}
+
+.submit-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ff00ff; /* Brighter neon glow */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .options {
+    flex-direction: column;
+  }
+
+  .option-button {
+    margin-bottom: 10px;
+  }
+}

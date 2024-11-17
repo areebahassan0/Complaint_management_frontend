@@ -7,6 +7,7 @@ import SettingsPage from './views/Settings/SettingsPage';
 import Sidebar from './components/Sidebar';
 import HistoryTable from './views/Complains/ComplainHistory/HistoryTable';
 import TrackComplaints from './views/Complains/TrackComplain/TrackComplain';
+import LodgeComplaints from './views/Complains/LodgeComplaint/LodgeComplaints';
 function App() {
     return (
         <Router>
@@ -17,7 +18,8 @@ function App() {
               <Route path="/dashboard/profile"  element= {<DashboardLayout><ProfilePage/></DashboardLayout>}></Route>
               <Route path="/dashboard/settings"  element= {<DashboardLayout><SettingsPage/></DashboardLayout>}></Route>
               <Route path="/dashboard/complaints-history"  element= {<DashboardLayout><HistoryTable/></DashboardLayout>}></Route>  
-              <Route path="/dashboard/track-complaints"  element= {<DashboardLayout><TrackComplaints/></DashboardLayout>}></Route>  
+              <Route path="/dashboard/track-complaints"  element= {<DashboardLayout><TrackComplaints/></DashboardLayout>}></Route>
+              <Route path="/dashboard/lodge-complaints"  element= {<DashboardLayout><LodgeComplaints/></DashboardLayout>}></Route>  
               {/* Redirect to Dashboard */}
               <Route path="*" element={<Navigate to="/dashboard" />} />
             </Routes>
