@@ -21,6 +21,7 @@ html, body {
   margin: 0;
   padding: 0;
   width: 100%;
+  overflow-y: auto;
 }
 
 /* Header styles */
@@ -254,6 +255,9 @@ body {
 .button-74:active {
   box-shadow: #422800 2px 2px 0 0;
   transform: translate(2px, 2px);
+}
+.custom-table {
+  color: black !important;
 }
 
 @media (min-width: 768px) {
