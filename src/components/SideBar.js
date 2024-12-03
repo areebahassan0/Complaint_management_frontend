@@ -18,9 +18,15 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                 </header>
         <ul className="sidebar-menu">
           <li><a href="/dashboard">Dashboard</a></li>
+<<<<<<< HEAD
           <li><a href="/dashboard/lodge-complaints">Lodge a Complaint</a></li>
           <li><a href="/dashboard/track-complaints">Track Complaint</a></li>
           <li><a href="/dashboard/complaints-history">Complaint History</a></li>
+=======
+          <li><a href="/lodge-complaint">Lodge a Complaint</a></li>
+          <li><a href="/track-complaints">Track Complaint</a></li>
+          <li><a href="/complaints-history">Complaint History</a></li>
+>>>>>>> 77b23fb10e84336229e50108b8f7f67735f3c37d
           <li><a href="/settings">Settings</a></li>
         </ul>
       </aside>

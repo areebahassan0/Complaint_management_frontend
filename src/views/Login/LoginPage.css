@@ -1,0 +1,64 @@
+/* Container */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  /* Optional background for better visibility */
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Heading Styles */
+.login-heading {
+  box-sizing: border-box;
+  color: rgb(240, 255, 255);
+  font-family: 'Chromatophore', Helvetica, Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 32px 0 24px;
+  text-align: center;
+}
+
+/* Subheading */
+.login-subheading {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Input Styles */
+.login-input {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Forgot Password Link */
+.forgot-password {
+  margin-bottom: 15px;
+  color: #007BFF;
+  cursor: pointer;
+}
+
+/* Button Styles */
+.login-button {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+

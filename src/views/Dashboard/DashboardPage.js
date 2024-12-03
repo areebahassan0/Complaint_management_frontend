@@ -14,7 +14,7 @@ const DashboardPage = () => {
                 
                     <button class="button-74" role="button" onclick="navigate('/dashboard/lodge-complaint')">Lodge your complaint</button>
 
-                    <button class="button-74" role="button" onclick="navigate('/dashboard/track-complaint')">Track your complaint</button>
+                    <button class="button-74" role="button" onclick="navigate('/dashboard/track-complaints')">Track your complaint</button>
                 
                     <button class="button-74" role="button" onclick="navigate('/dashboard/complaints-history')">View Complaint History</button>
                
