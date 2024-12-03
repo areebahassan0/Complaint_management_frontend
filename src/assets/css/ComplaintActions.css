@@ -1,28 +1,27 @@
-.complaint-form-page {
-  background-color: #1a0037; /* Dark purple background */
+.lodge-complaints-container {
+  background: linear-gradient(145deg, #1a0037, #29005f); /* Gradient background */
   color: #00e7ff; /* Neon blue text */
   padding: 20px;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
-  border-radius: 10px;
+  border-radius: 15px;
   text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 20px;
   color: #00e7ff; /* Neon blue text */
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
-h2 {
-  font-size: 1.5rem;
-  color: #00e7ff;
-}
-
-.options {
+/* Option Buttons */
+.options-container {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
   margin-bottom: 30px;
 }
 
@@ -30,91 +29,212 @@ h2 {
   background: transparent;
   border: 2px solid #ff00ff; /* Pink outline for buttons */
   color: #ffffff;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 25px;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 30px;
   cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .option-button.active,
 .option-button:hover {
   background: #ff00ff; /* Pink background */
   color: #fff; /* White text */
-  box-shadow: 0 0 15px #ff00ff; /* Neon glow */
+  box-shadow: 0 0 20px #ff00ff; /* Neon glow */
+  transform: scale(1.05); /* Slightly larger on hover */
 }
 
+/* Sub-option Buttons */
+.sub-options {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 40px;
+  flex-wrap: wrap; /* Allows wrapping for small screens */
+}
+
+.sub-option-button {
+  background: transparent;
+  border: 2px solid #00e7ff; /* Neon blue outline */
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.sub-option-button.active,
+.sub-option-button:hover {
+  background: #00e7ff; /* Neon blue background */
+  color: #1a0037; /* Dark purple text */
+  box-shadow: 0 0 20px #00e7ff; /* Neon glow */
+  transform: scale(1.05);
+}
+
+/* Form Container */
 .form-container {
-  background: #29005f; /* Slightly lighter purple form background */
-  padding: 20px;
-  border-radius: 10px;
+  background: #330066; /* Deep purple background */
+  padding: 30px;
+  border-radius: 15px;
   text-align: left;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.7);
+  margin-top: 20px;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 label {
   display: block;
-  margin-bottom: 5px;
-  font-size: 0.9rem;
+  margin-bottom: 8px;
+  font-size: 1rem;
   font-weight: bold;
-  color: #00e7ff; /* Neon blue text */
+  color: #00e7ff;
 }
 
+/* Input & Textarea */
 input,
 textarea {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ff00ff; /* Pink border */
-  border-radius: 5px;
-  background: #330066; /* Deep purple input background */
-  color: #fff; /* White input text */
+  border-radius: 8px;
+  background: #29005f; /* Dark purple background */
+  color: #ffffff;
   font-size: 1rem;
+  transition: 0.3s ease;
 }
 
 textarea {
   resize: none;
 }
 
-input[type="file"] {
-  padding: 0;
-  background: none;
-}
-
 input:focus,
 textarea:focus {
   outline: none;
   border-color: #ff00ff; /* Pink focus border */
-  box-shadow: 0 0 5px #ff00ff; /* Neon glow on focus */
+  box-shadow: 0 0 8px #ff00ff; /* Neon glow on focus */
 }
 
+/* Slider Container */
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input[type="range"] {
+  width: 80%;
+  margin: 15px 0;
+}
+
+p {
+  font-size: 1rem;
+  color: #00e7ff;
+}
+
+/* Submit Button */
 .submit-button {
   background-color: #ff00ff; /* Pink button background */
   color: #fff; /* White text */
   border: none;
-  border-radius: 25px;
-  padding: 10px 20px;
+  border-radius: 30px;
+  padding: 12px 25px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  box-shadow: 0 0 15px #ff00ff; /* Neon glow */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 0 10px #ff00ff; /* Neon glow */
 }
 
 .submit-button:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 15px #ff00ff; /* Brighter neon glow */
+  box-shadow: 0 0 25px #ff00ff; /* Brighter neon glow */
 }
 
-/* Responsive adjustments */
+/* Time Container */
+.time-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.time-input {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+input[type="number"] {
+  width: 65px;
+  text-align: center;
+  padding: 8px;
+  font-size: 1rem;
+  background: #330066;
+  border: 1px solid #ff00ff;
+  border-radius: 8px;
+  color: #ffffff;
+}
+
+select {
+  padding: 8px;
+  background: #330066;
+  border: 1px solid #ff00ff;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+/* Extended Outage */
+.extended-outage {
+  background: #29005f;
+  padding: 20px;
+  margin-top: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.7);
+}
+
+.expand-button {
+  background: #ff00ff; /* Pink background */
+  color: #fff; /* White text */
+  padding: 12px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 1.1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 15px #ff00ff;
+}
+
+.expand-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #ff00ff;
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-  .options {
-    flex-direction: column;
+  .lodge-complaints-container {
+    padding: 15px;
+    max-width: 100%;
   }
 
-  .option-button {
-    margin-bottom: 10px;
+  .options-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .option-button,
+  .sub-option-button,
+  .submit-button,
+  .expand-button {
+    width: 100%;
+  }
+
+  .sub-options {
+    flex-direction: column;
+    gap: 15px;
   }
 }
