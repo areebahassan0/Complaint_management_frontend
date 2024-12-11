@@ -25,15 +25,19 @@ export const POST = async (url, data = null, config = null) => {
     }
 };
 
-export const GET = async (url, params = null) => {
+export const GET = async (url, params = null, headers = {}) => {
     try {
-        const fullUrl = getFullUrl(url);  // Get the full URL
-        // Ensure params are passed correctly as query parameters
-        const response = await api.get(fullUrl, { params: params }); // Pass params inside the options object
-        
+        const fullUrl = getFullUrl(url); // Get the full URL
+        // Combine params and headers in the API call
+        const config = {
+            params: params, // Pass query parameters
+            headers: headers, // Pass custom headers
+        };
+
+        const response = await api.get(fullUrl, config); // Include headers in the request config
         return response?.data;
     } catch (error) {
-        console.error('Error in GET request:', error);
+        console.error("Error in GET request:", error);
         throw error;
     }
 };

@@ -11,7 +11,7 @@ const IncorrectLoadShedding = () => {
     const updatedTimings = [...outageTimings];
     updatedTimings[index] = {
       ...updatedTimings[index],
-      [field]: field === "minutes" ? Math.max(0, Math.min(59, value)) : value,
+      [field]: field === "minutes" ? Math.max(0, Math.min(59, value)) : value, BBBBBBBBBBB
     };
     setOutageTimings(updatedTimings);
   };

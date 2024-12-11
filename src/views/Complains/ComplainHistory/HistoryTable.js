@@ -21,7 +21,13 @@ function HistoryTable() {
     const fetchComplaintHistory = async () => {
         // setLoading(true);
         console.log('Fetching complaint history...');
-            await getComplaintHistory(userId).then((result) => {
+        const token = localStorage.getItem("authToken"); // Replace with your token retrieval logic
+
+            if (!token) {
+                toast.error("User not authenticated. Please log in.");
+                return;
+            }
+            await getComplaintHistory(token).then((result) => {
                 
             if (result?.status) {
                 console.log('Processing complaint data...');

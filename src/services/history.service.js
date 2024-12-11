@@ -4,10 +4,13 @@ import { apiUrl } from '../utils/constants';
 import { GET, PATCH, POST, DELETE } from './api.service.wrapper';
 
 // Fetch complaint history for a specific user
-export const getComplaintHistory = async (userId) => {
+export const getComplaintHistory = async (token) => {
     try{
-        const params = { user_id: userId };
-        const response = await GET(apiUrl.view_history, params);
+        const headers = {
+            Authorization: `Bearer ${token}`,
+        };
+        // const params = { user_id: userId };
+        const response = await GET(apiUrl.view_history, null,headers);
         console.log("Before response.json", response)
         return { status: true, data: response };
     } catch (error) {
