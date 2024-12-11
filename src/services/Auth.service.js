@@ -1,6 +1,15 @@
 import { apiUrl } from '../utils/constants';
 import { POST } from './api.service.wrapper';
 
+// Save tokens
+export const saveTokens = (accessToken, refreshToken) => {
+    localStorage.setItem('access_token', accessToken);
+    localStorage.setItem('refresh_token', refreshToken);
+};
+
+// Get the access token
+export const getAccessToken = () => localStorage.getItem('access_token');
+
 // User signup
 export const signup = async (signupData) => {
     try {
@@ -46,6 +55,8 @@ export const login = async (loginData) => {
     try {
         const response = await POST(apiUrl.login, loginData);
         console.log('Login Response:', response);
+        
+        saveTokens(response.data.access_token, response.data.refresh_token);
         return { status: true, data: response };
     } catch (error) {
         console.error('Error during login:', error);

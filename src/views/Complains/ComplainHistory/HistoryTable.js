@@ -10,7 +10,7 @@ function HistoryTable() {
     const [page, setPage] = useState(1);
     const [perPage, setPerPage] = useState(10);
     const [rows, setRows] = useState([]);
-    const userId = 100000; // Replace with dynamic userId if needed
+    // const userId = 100000; // Replace with dynamic userId if needed
 
     useEffect(() => {
         console.log('Calling fetchComplaintHistory...');
@@ -21,13 +21,13 @@ function HistoryTable() {
     const fetchComplaintHistory = async () => {
         // setLoading(true);
         console.log('Fetching complaint history...');
-        const token = localStorage.getItem("authToken"); // Replace with your token retrieval logic
-
-            if (!token) {
-                toast.error("User not authenticated. Please log in.");
-                return;
-            }
-            await getComplaintHistory(token).then((result) => {
+        // const token = localStorage.getItem("authToken"); // Replace with your token retrieval logic
+        // console.log(token)
+        //     if (!token) {
+        //         toast.error("User not authenticated. Please log in.");
+        //         return;
+        //     }
+            await getComplaintHistory().then((result) => {
                 
             if (result?.status) {
                 console.log('Processing complaint data...');

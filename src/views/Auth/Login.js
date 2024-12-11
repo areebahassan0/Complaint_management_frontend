@@ -17,6 +17,7 @@ const Login = () => {
         const result = await login(formData);
         if (result.status) {
             setStatusMessage("Login successful!");
+            navigate("/dashboard");
         } else {
             setStatusMessage(result.message || "Login failed.");
         }
@@ -29,7 +30,7 @@ const Login = () => {
     const handleSignup = () => {
         navigate("/signup");
     };
-
+    
 
     return (
         <div style={{ maxWidth: "400px", margin: "50px auto",padding: "20px", fontFamily: "Chromatophore, helvetica, arial, sans-serif", }}>
