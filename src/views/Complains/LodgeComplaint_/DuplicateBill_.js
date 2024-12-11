@@ -67,8 +67,9 @@ const DuplicateBill = () => {
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>
-      <h2>Unexplained Charges Complaint Form</h2>
-
+      <h2>Duplicate Bill Complaint Form</h2>
+      
+      <h3 className="small-slim-heading">Duplicate bills or repeated arrears, such as two bills for the same month or a previous balance appearing twice</h3>
       {/* B1 Date of Occurrence */}
       <div className="form-group">
         <label htmlFor="b1Date">Bill 1 Date of Occurrence</label>

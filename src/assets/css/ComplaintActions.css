@@ -17,6 +17,23 @@ h1 {
   font-weight: 700;
 }
 
+
+.small-slim-heading {
+  font-size: 16px; /* Smaller font size */
+  font-weight: 300; /* Slim font weight */
+ /* color: #333; /* Dark gray for readability */
+  margin-bottom: 10px; /* Add some spacing below */
+  line-height: 1.4; /* Adjust line height for better readability */
+}
+
+.form-heading {
+  font-size: 2.5rem;
+  color: #00e7ff;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
 /* Option Buttons */
 .options-container {
   display: flex;

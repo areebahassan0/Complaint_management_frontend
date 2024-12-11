@@ -27,8 +27,9 @@ const MeterIssue = () => {
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>
-      <h2>Faulty Meter Complaint</h2>
-
+      <h2>Meter Issue Complaint</h2>
+      
+      <h3 className="small-slim-heading">The meter itself is malfunctioning and producing incorrect data.</h3>
       {/* Type of Meter Issue Noticed */}
       <div className="form-group">
         <label htmlFor="meterIssueType">Type of Meter Issue Noticed</label>

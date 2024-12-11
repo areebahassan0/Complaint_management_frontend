@@ -43,7 +43,10 @@ const BankTransferNotReflected = ({ subType }) => {
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>
-      <h2>{subType} Complaint</h2>
+      <h2>{subType} Bank Transfer Complaint</h2>
+
+      <h3 className="small-slim-heading">Payment made via bank is not reflected</h3>
+     
 
       {/* Payment Date */}
       <div className="form-group">

@@ -45,6 +45,8 @@ const IncorrectReading = () => {
     <form className="form-container" onSubmit={handleSubmit}>
       <h2>Incorrect Reading Complaint</h2>
 
+      <h3 className="small-slim-heading">The meter reading on the bill doesn't match the actual reading</h3>
+
       {/* Billing Period */}
       <div className="form-group">
         <label htmlFor="billingPeriod">Billing Period</label>

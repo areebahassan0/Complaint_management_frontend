@@ -32,7 +32,8 @@ const IncorrectBillAmount = () => {
   return (
     <form className="form-container" onSubmit={handleSubmit}>
       <h2>Incorrect Bill Amount Complaint Form</h2>
-
+      
+      <h3 className="small-slim-heading">Billed amount being is overcharged, and undercharged.</h3>
       {/* Billing Period */}
       <div className="form-group">
         <label htmlFor="billingPeriod">Billing Period</label>

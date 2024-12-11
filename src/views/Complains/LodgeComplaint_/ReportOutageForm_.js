@@ -71,6 +71,7 @@ const ReportOutageForm = () => {
       <h2>Report an Outage Form</h2>
 
       {/* Outage Date */}
+      <h3 className="small-slim-heading">Complete power outage without any prior notice</h3>
       <div className="form-group">
         <label htmlFor="outageDate">Outage Date</label>
         <input
@@ -183,7 +184,8 @@ const ReportOutageForm = () => {
       {isExtendedOutage && (
         <div className="extended-outage">
           <h3>Extended Outage Details</h3>
-
+           
+          <h4 className="small-slim-heading">Power outage lasting longer than expected or announced</h4>
           {/* Scheduled Start Time */}
           <div className="form-group">
             <label htmlFor="scheduledStartTime">Scheduled Starting Time</label>

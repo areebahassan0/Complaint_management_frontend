@@ -44,7 +44,8 @@ const IncorrectLoadShedding = () => {
   return (
     <form className="form-container" onSubmit={handleSubmit}>
       <h2>Incorrect Load Shedding Schedule Form</h2>
-
+       
+      <h3 className="small-slim-heading">Outages do not match the schedule provided by the utility company</h3>
       {/* Date of Occurrence */}
       <div className="form-group">
         <label htmlFor="occurrenceDate">Date of Occurrence</label>

@@ -44,7 +44,8 @@ const FrequentLoadShedding = () => {
   return (
     <form className="form-container" onSubmit={handleSubmit}>
       <h2>Frequent Load Shedding Form</h2>
-
+       
+      <h3 className="small-slim-heading">Several outages occurring within the same day</h3>
       {/* Date of Occurrence */}
       <div className="form-group">
         <label htmlFor="occurrenceDate">Date of Occurrence</label>

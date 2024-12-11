@@ -35,8 +35,9 @@ const OnlinePaymentNotReflected = ({ subType }) => {
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>
-      <h2>{subType} Complaint</h2>
-
+      <h2>{subType} Online Payment  Complaint</h2>
+       
+      <h3 className="small-slim-heading">Payment made online is not showing in the system</h3>
       {/* Payment Date */}
       <div className="form-group">
         <label htmlFor="paymentDate">Payment Date</label>
