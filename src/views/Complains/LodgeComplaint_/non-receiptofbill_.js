@@ -1,28 +1,62 @@
 import React, { useState } from "react";
-
+import { lodgeComplaint } from "../../../services/history.service";
 const NonReceiptOfBill = () => {
   // State variables for form fields
   const [billingPeriod, setBillingPeriod] = useState("");
   const [expectedDate, setExpectedDate] = useState("");
   const [billingMethod, setBillingMethod] = useState("");
+  const [description, setDescription] = useState("");
+  const [supportingFile, setSupportingFile] = useState(null);
+  const FURTHER_SUB_CATEGORY_ID=22;
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    const formData = {
-      billingPeriod,
-      expectedDate,
-      billingMethod,
-    };
+      // Construct form_data
+      const formData = {
+        billingPeriod,
+        expectedDate,
+        billingMethod,
+      };
+  
+      // Construct payload
+      const dataPayload = {
+        further_subcategory_id: FURTHER_SUB_CATEGORY_ID,
+        description: description || "",
+        form_data: formData,
+        supporting_file: supportingFile || "",
+      };
+  
+      try {
+        // Call the lodgeComplaint service
+        const response = await lodgeComplaint(dataPayload);
+  
+        if (response.status) {
+          alert("Your complaint has been submitted successfully!");
+          // Reset the form
+          setBillingPeriod("");
+          setExpectedDate("");
+          setBillingMethod("");
+          setDescription("");
+          setSupportingFile(null);
+        } else {
+          alert(response.message || "Failed to submit your complaint.");
+        }
+      } catch (error) {
+        console.error("Error submitting complaint:", error);
+        alert("An error occurred while submitting your complaint.");
+      }
+    
+  }
 
-    console.log("Complaint submitted: ", formData);
+  //   console.log("Complaint submitted: ", formData);
 
-    // Reset the form
-    setBillingPeriod("");
-    setExpectedDate("");
-    setBillingMethod("");
-    alert("Your complaint has been submitted successfully!");
-  };
+  //   // Reset the form
+  //   setBillingPeriod("");
+  //   setExpectedDate("");
+  //   setBillingMethod("");
+  //   alert("Your complaint has been submitted successfully!");
+  // };
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>
