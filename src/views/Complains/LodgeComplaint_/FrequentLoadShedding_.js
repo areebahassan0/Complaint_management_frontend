@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { lodgeComplaint } from "../../../services/history.service";
 const FrequentLoadShedding = () => {
   const [numOutages, setNumOutages] = useState(1);
   const [outageTimings, setOutageTimings] = useState([{ hours: "", minutes: "", period: "AM" }]);
@@ -8,6 +8,18 @@ const FrequentLoadShedding = () => {
   const [attachedFile, setAttachedFile] = useState(null);
   const [timePreferences, setTimePreferences] = useState({ weekends: false, morning: false });
 
+  const determineCategory = () => {
+    if (timePreferences.weekends ) {
+      return 4;
+    } 
+     else if (timePreferences.morning) {
+      return 5;
+    } else {
+      return 3;
+    }
+  };
+  const FURTHER_SUB_CATEGORY_ID = determineCategory();
+  
   const handleOutageTimingChange = (index, field, value) => {
     const updatedTimings = [...outageTimings];
     updatedTimings[index] = {
@@ -36,20 +48,42 @@ const FrequentLoadShedding = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
+    
     const formData = {
       occurrenceDate,
       numOutages,
       outageTimings,
-      description,
-      attachedFile,
-      timePreferences,
     };
-    console.log("Form Submitted:", formData);
-    alert("Complaint submitted successfully!");
-  };
+    const dataPayload = {
+      further_subcategory_id: FURTHER_SUB_CATEGORY_ID,
+      description: description || "-",
+      form_data: formData,
+      supporting_file: attachedFile || "-",
+    };
 
+    try {
+      // Call the lodgeComplaint service
+      const response = await lodgeComplaint(dataPayload);
+
+      if (response.status) {
+        alert("Your complaint has been submitted successfully!");
+        // Reset the form
+        setOccurrenceDate("");
+        setNumOutages(0);
+        setOutageTimings(0);
+        setDescription("");
+        setAttachedFile([]);
+      } else {
+        alert(response.message || "Failed to submit your complaint.");
+      }
+    } catch (error) {
+      console.error("Error submitting complaint:", error);
+      alert("An error occurred while submitting your complaint.");
+    }
+  
+}
   return (
     <form onSubmit={handleSubmit}>
       <h2>Frequent Load Shedding Form</h2>

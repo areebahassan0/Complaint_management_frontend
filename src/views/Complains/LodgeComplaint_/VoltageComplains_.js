@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { lodgeComplaint } from "../../../services/history.service";
 const VoltageComplaint = () => {
   const [voltageIssueDate, setVoltageIssueDate] = useState("");
   const [voltageIssueTime, setVoltageIssueTime] = useState({
@@ -14,7 +14,11 @@ const VoltageComplaint = () => {
   const [frequency, setFrequency] = useState("");
   const [intensity, setIntensity] = useState("");
   const [attachedFiles, setAttachedFiles] = useState([]); // Array for attached files
-
+  const complaintTypeIDs = {
+    low: 7,
+    high: 8,
+    fluctuative: 9,
+  };
   // Handle time changes
   const handleVoltageTimeChange = (field, value) => {
     setVoltageIssueTime((prev) => ({
@@ -47,20 +51,54 @@ const VoltageComplaint = () => {
     setVoltageLevel(updatedLevels);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    const data = {
+    const FURTHER_SUB_CATEGORY_ID = complaintTypeIDs[level]
+    const formData=[]
+    FURTHER_SUB_CATEGORY_ID ==9?
+    formData = {
       voltageIssueDate,
       voltageIssueTime,
       voltageDuration,
       voltageLevel,
-      additionalDetails,
-      level,
-      ...(level === "fluctuative" && { frequency, intensity }),
+      frequency,
+      intensity
+    } :
+    formData ={
+      voltageIssueDate,
+      voltageIssueTime,
+      voltageDuration,
+      voltageLevel,
+    }
+    const dataPayload = {
+      further_subcategory_id: FURTHER_SUB_CATEGORY_ID,
+      description: additionalDetails || "-",
+      form_data: formData,
+      supporting_file: attachedFiles || "-",
     };
-    console.log("Form Submitted:", data);
-    // Submit form data to the backend
-  };
+
+    try {
+      // Call the lodgeComplaint service
+      const response = await lodgeComplaint(dataPayload);
+
+      if (response.status) {
+        alert("Your complaint has been submitted successfully!");
+        // Reset the form
+        setVoltageDuration("");
+        setVoltageIssueDate(0);
+        setVoltageIssueTime(0);
+        setVoltageLevel("");
+        setAdditionalDetails("");
+        setAttachedFiles([]);
+      } else {
+        alert(response.message || "Failed to submit your complaint.");
+      }
+    } catch (error) {
+      console.error("Error submitting complaint:", error);
+      alert("An error occurred while submitting your complaint.");
+    }
+  
+}
 
   return (
     <form onSubmit={handleSubmit}>

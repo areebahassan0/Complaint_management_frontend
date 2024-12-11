@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { lodgeComplaint } from "../../../services/history.service";
 const PhaseComplaint = () => {
   const [selectedPhases, setSelectedPhases] = useState([]);
   const [formData, setFormData] = useState({
@@ -39,20 +39,56 @@ const PhaseComplaint = () => {
     setAttachedFiles([...e.target.files]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log("Submitted Data:", {
-      selectedPhases,
-      ...formData,
-      formattedTime: formatTime(
+    const FURTHER_SUB_CATEGORY_ID=selectedPhases.length > 1 ? 11 :10
+    // console.log("Submitted Data:", {
+    //   selectedPhases,
+    //   ...formData,
+    //   formattedTime: formatTime(
+    //     formData.startHours,
+    //     formData.startMinutes,
+    //     formData.startPeriod
+    //   ),
+    // });
+    formData = {
+      voltageIssueDate: formData.date,
+      voltageIssueTime: formatTime(
         formData.startHours,
         formData.startMinutes,
         formData.startPeriod
       ),
-    });
-    alert("Complaint Submitted Successfully!");
+      voltageDuration: formData.duration,
+      selectedPhases:selectedPhases.join(",")
+  };
+  const dataPayload = {
+    further_subcategory_id: FURTHER_SUB_CATEGORY_ID,
+    description:  "-",
+    form_data: formData,
+    supporting_file: attachedFiles || "-",
   };
 
+  try {
+    // Call the lodgeComplaint service
+    const response = await lodgeComplaint(dataPayload);
+
+    if (response.status) {
+      alert("Your complaint has been submitted successfully!");
+      // Reset the form
+      setFormData("");
+      setSelectedPhases(0);
+      setAttachedFiles([]);
+      
+    } else {
+      alert(response.message || "Failed to submit your complaint.");
+    }
+  } catch (error) {
+    console.error("Error submitting complaint:", error);
+    alert("An error occurred while submitting your complaint.");
+  }
+
+}
+  
   return (
     <form onSubmit={handleSubmit}>
       <h2>Phase Complaint Form</h2>

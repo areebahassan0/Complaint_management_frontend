@@ -30,9 +30,9 @@ const NonReceiptOfBill = () => {
       // Construct payload
       const dataPayload = {
         further_subcategory_id: FURTHER_SUB_CATEGORY_ID,
-        description: description || "",
+        description: description || "-",
         form_data: formData,
-        supporting_file: supportingFile || "",
+        supporting_file: attachedFiles || "-",
       };
   
       try {

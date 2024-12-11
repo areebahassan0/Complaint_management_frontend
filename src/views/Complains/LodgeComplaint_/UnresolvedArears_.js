@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { lodgeComplaint } from "../../../services/history.service";
 const UnexplainedArears = () => {
  
   const [billingPeriod, setBillingPeriod] = useState("");
@@ -7,18 +7,43 @@ const UnexplainedArears = () => {
   const [currentBilledAmount, setCurrentBilledAmount] = useState("");
   const [description, setDescription] = useState("");
   const [attachedFile, setAttachedFile] = useState(null);
-
-  const handleSubmit = (e) => {
+  const FURTHER_SUB_CATEGORY_ID= 18;
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const formData = {
       billingPeriod,
       previousBilledAmount,
       currentBilledAmount,
-      description,
+
     };
-    console.log("Form Submitted:", formData);
-    // Handle submission logic (e.g., send to backend)
-  };
+    const dataPayload = {
+      further_subcategory_id: FURTHER_SUB_CATEGORY_ID,
+      description: description || "-",
+      form_data: formData,
+      supporting_file: attachedFile || "-",
+    };
+
+    try {
+      // Call the lodgeComplaint service
+      const response = await lodgeComplaint(dataPayload);
+
+      if (response.status) {
+        alert("Your complaint has been submitted successfully!");
+        // Reset the form
+        setPreviousBilledAmount("");
+        setBillingPeriod("");
+        setCurrentBilledAmount("");
+        setDescription("");
+        setAttachedFile(null);
+      } else {
+        alert(response.message || "Failed to submit your complaint.");
+      }
+    } catch (error) {
+      console.error("Error submitting complaint:", error);
+      alert("An error occurred while submitting your complaint.");
+    }
+  
+}
 
   const handleFileUpload = (event) => {
     setAttachedFile(event.target.files[0]);

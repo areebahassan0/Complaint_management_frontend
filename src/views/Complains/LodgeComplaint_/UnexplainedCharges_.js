@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { lodgeComplaint } from "../../../services/history.service";
 const UnexplainedCharges = () => {
   const [chargeType, setChargeType] = useState("");
   const [billingPeriod, setBillingPeriod] = useState("");
@@ -7,24 +7,53 @@ const UnexplainedCharges = () => {
   const [surchargeAmount, setSurchargeAmount] = useState("");
   const [description, setDescription] = useState("");
   const [attachedFiles, setAttachedFiles] = useState([]); // Array for attached files
-
+  const FURTHER_SUB_CATEGORY_ID= 16;
   const handleFileChange = (e) => {
     setAttachedFiles([...e.target.files]);
   };
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const formData = {
       chargeType,
       billingPeriod,
       totalBilledAmount,
       surchargeAmount,
-      description,
+      
     };
-    console.log("Form Submitted:", formData);
-    // Handle submission logic (e.g., send to backend)
-  };
+    // Construct payload
+    const dataPayload = {
+      further_subcategory_id: FURTHER_SUB_CATEGORY_ID,
+      description: description || "-",
+      form_data: formData,
+      supporting_file: attachedFiles || "-",
+    };
+
+    try {
+      // Call the lodgeComplaint service
+      const response = await lodgeComplaint(dataPayload);
+
+      if (response.status) {
+        alert("Your complaint has been submitted successfully!");
+        // Reset the form
+        setChargeType("");
+        setBillingPeriod("");
+        setTotalBilledAmount("");
+        setSurchargeAmount("")
+        setDescription("");
+        setAttachedFiles(null);
+      } else {
+        alert(response.message || "Failed to submit your complaint.");
+      }
+    } catch (error) {
+      console.error("Error submitting complaint:", error);
+      alert("An error occurred while submitting your complaint.");
+    }
+  
+}
+
+   
 
 
   return (

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { lodgeComplaint } from "../../../services/history.service";
 const IncorrectBillAmount = () => {
   const [billingPeriod, setBillingPeriod] = useState("");
   const [billedAmount, setBilledAmount] = useState(0);
@@ -16,20 +16,47 @@ const IncorrectBillAmount = () => {
       ? "Undercharged"
       : "No Discrepancy";
 
-  const handleSubmit = (e) => {
+  const FURTHER_SUB_CATEGORY_ID = chargeType =="Overcharged"? 12 : 13;
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const formData = {
       billingPeriod,
       billedAmount,
       expectedAmount,
-      chargeType,
       discrepancyReason,
       billCopy,
-      description,
     };
-    console.log("Form Submitted:", formData);
-    // Handle form submission logic (e.g., sending to a backend API)
-  };
+    const dataPayload = {
+      further_subcategory_id: FURTHER_SUB_CATEGORY_ID,
+      description:  "-",
+      form_data: formData,
+      supporting_file: "-",
+    };
+  
+    try {
+      // Call the lodgeComplaint service
+      const response = await lodgeComplaint(dataPayload);
+  
+      if (response.status) {
+        alert("Your complaint has been submitted successfully!");
+        // Reset the form
+        setBillingPeriod("");
+        setBilledAmount(0);
+        setExpectedAmount("");
+        setDescription("");
+        setDiscrepancyReason("");
+        
+        
+      } else {
+        alert(response.message || "Failed to submit your complaint.");
+      }
+    } catch (error) {
+      console.error("Error submitting complaint:", error);
+      alert("An error occurred while submitting your complaint.");
+    }
+  
+  }
+    
 
   return (
     <form onSubmit={handleSubmit}>

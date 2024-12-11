@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-
+import { lodgeComplaint } from "../../../services/history.service";
 const ReportOutageForm = () => {
   // State for outage details
   const [outageDate, setOutageDate] = useState("");
@@ -16,6 +16,7 @@ const ReportOutageForm = () => {
   const [scheduledDuration, setScheduledDuration] = useState(0); // in minutes
   const [attachedFiles, setAttachedFiles] = useState([]); 
 
+  const FURTHER_SUB_CATEGORY_ID= isExtendedOutage ? 2 :1
   // Handle time changes for start and scheduled times
   const handleTimeChange = (type, unit, value) => {
     if (type === "outageStart") {
@@ -42,37 +43,56 @@ const ReportOutageForm = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-
-    const formData = {
+    const formData ={}
+    isExtendedOutage ?
+    formData = {
       outageDate,
       outageStartTime: formatTime(outageStartHours, outageStartMinutes, outageStartPeriod),
       outageDuration,
-      description,
-      isExtendedOutage,
+    } : 
+    formData = {
       scheduledStartTime: formatTime(scheduledStartHours, scheduledStartMinutes, scheduledStartPeriod),
       scheduledDuration,
+    }
+    const dataPayload = {
+      further_subcategory_id: FURTHER_SUB_CATEGORY_ID,
+      description: description || "-",
+      form_data: formData,
+      supporting_file: attachedFiles || "-",
     };
 
-    console.log("Outage Report Submitted: ", formData);
+    try {
+      // Call the lodgeComplaint service
+      const response = await lodgeComplaint(dataPayload);
 
-    // Reset form after submission
-    setOutageDate("");
-    setOutageStartHours(0);
-    setOutageStartMinutes(0);
-    setOutageStartPeriod("AM");
-    setOutageDuration(0);
-    setDescription("");
-    setIsExtendedOutage(false);
-    setScheduledStartHours(0);
-    setScheduledStartMinutes(0);
-    setScheduledStartPeriod("AM");
-    setScheduledDuration(0);
-    setAttachedFiles([]);
+      if (response.status) {
+        alert("Your complaint has been submitted successfully!");
+        // Reset the form
+        setOutageDate("");
+        setOutageStartHours(0);
+        setOutageStartMinutes(0);
+        setOutageStartPeriod("AM");
+        setOutageDuration(0);
+        setDescription("");
+        setIsExtendedOutage(false);
+        setScheduledStartHours(0);
+        setScheduledStartMinutes(0);
+        setScheduledStartPeriod("AM");
+        setScheduledDuration(0);
+        setAttachedFiles([]);
+      } else {
+        alert(response.message || "Failed to submit your complaint.");
+      }
+    } catch (error) {
+      console.error("Error submitting complaint:", error);
+      alert("An error occurred while submitting your complaint.");
+    }
+  
+}
 
-    alert("Your outage report has been submitted successfully!");
-  };
+    
 
   return (
     <form  onSubmit={handleSubmit}>

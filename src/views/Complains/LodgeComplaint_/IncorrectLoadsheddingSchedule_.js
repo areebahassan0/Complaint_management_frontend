@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-
+import { lodgeComplaint } from "../../../services/history.service";
 const IncorrectLoadShedding = () => {
   const [numOutages, setNumOutages] = useState(1);
   const [outageTimings, setOutageTimings] = useState([{ hours: "", minutes: "", period: "AM" }]);
   const [occurrenceDate, setOccurrenceDate] = useState("");
   const [description, setDescription] = useState("");
   const [attachedFile, setAttachedFile] = useState(null);
+  const FURTHER_SUB_CATEGORY_ID= 6;
 
   const handleOutageTimingChange = (index, field, value) => {
     const updatedTimings = [...outageTimings];
@@ -28,7 +29,7 @@ const IncorrectLoadShedding = () => {
     setAttachedFile(event.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const formData = {
       occurrenceDate,
@@ -37,9 +38,36 @@ const IncorrectLoadShedding = () => {
       description,
       attachedFile,
     };
-    console.log("Form Submitted:", formData);
-    alert("Complaint submitted successfully!");
-  };
+    const dataPayload = {
+      further_subcategory_id: FURTHER_SUB_CATEGORY_ID,
+      description: description || "-",
+      form_data: formData,
+      supporting_file: attachedFile || "-",
+    };
+
+    try {
+      // Call the lodgeComplaint service
+      const response = await lodgeComplaint(dataPayload);
+
+      if (response.status) {
+        alert("Your complaint has been submitted successfully!");
+        // Reset the form
+        setOccurrenceDate("");
+        setNumOutages("");
+        setOutageTimings("");
+        setDescription("");
+        setAttachedFile(null);
+      } else {
+        alert(response.message || "Failed to submit your complaint.");
+      }
+    } catch (error) {
+      console.error("Error submitting complaint:", error);
+      alert("An error occurred while submitting your complaint.");
+    }
+  
+}
+
+
 
   return (
     <form  onSubmit={handleSubmit}>

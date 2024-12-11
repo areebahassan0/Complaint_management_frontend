@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { lodgeComplaint } from "../../../services/history.service";
 const DuplicateBill = () => {
   const [b1billingPeriod, setb1BillingPeriod] = useState("");
   const [b2billingPeriod, setb2BillingPeriod] = useState("");
@@ -10,6 +10,9 @@ const DuplicateBill = () => {
   const [b2attachedFile, setb2AttachedFile] = useState(null);
   const [b1Date, setb1Date] = useState("");
   const [b2Date, setb2Date] = useState("");
+  
+  //const [supportingFile, setSupportingFile] = useState(null);
+  const FURTHER_SUB_CATEGORY_ID=17;
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -21,49 +24,61 @@ const DuplicateBill = () => {
     formData.append("b2billingPeriod", b2billingPeriod);
     formData.append("b1BilledAmount", b1BilledAmount);
     formData.append("b2BilledAmount", b2BilledAmount);
-    formData.append("description", description);
     formData.append("b1attachedFile", b1attachedFile);
     formData.append("b2attachedFile", b2attachedFile);
     formData.append("b1Date", b1Date);
     formData.append("b2Date", b2Date);
 
+    const dataPayload = {
+      further_subcategory_id: FURTHER_SUB_CATEGORY_ID,
+      description: description || "-",
+      form_data: "-",
+      supporting_file: b1attachedFile || b2attachedFile || "-",
+    };
     // Perform the POST request to submit the form data
     try {
-      const response = await fetch("/submit-form", {
-        method: "POST",
-        body: formData,
-      });
+      // Call the lodgeComplaint service
+      const response = await lodgeComplaint(dataPayload);
 
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log("Form submitted successfully:", responseData);
+      if (response.status) {
         alert("Your complaint has been submitted successfully!");
-        // Optionally reset the form
-        resetForm();
+        // Reset the form
+        setDescription("");
+        setb1BillingPeriod("");
+        setb2BillingPeriod("");
+        setb1BilledAmount("");
+        setb2BilledAmount("");
+        setDescription("");
+        setb1AttachedFile(null);
+        setb2AttachedFile(null);
+        setb1Date("");
+        setb2Date("");
       } else {
-        throw new Error("Form submission failed");
+        alert(response.message || "Failed to submit your complaint.");
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error("Error submitting complaint:", error);
+      alert("An error occurred while submitting your complaint.");
     }
+
   };
 
   const handleFileUpload = (event, setFileState) => {
     setFileState(event.target.files[0]);
   };
 
-  // Reset the form fields
-  const resetForm = () => {
-    setb1BillingPeriod("");
-    setb2BillingPeriod("");
-    setb1BilledAmount("");
-    setb2BilledAmount("");
-    setDescription("");
-    setb1AttachedFile(null);
-    setb2AttachedFile(null);
-    setb1Date("");
-    setb2Date("");
-  };
+  // // Reset the form fields
+  // const resetForm = () => {
+  //   setb1BillingPeriod("");
+  //   setb2BillingPeriod("");
+  //   setb1BilledAmount("");
+  //   setb2BilledAmount("");
+  //   setDescription("");
+  //   setb1AttachedFile(null);
+  //   setb2AttachedFile(null);
+  //   setb1Date("");
+  //   setb2Date("");
+  // };
 
   return (
     <form onSubmit={handleSubmit}>
