@@ -6,6 +6,7 @@ const IncorrectBillAmount = () => {
   const [expectedAmount, setExpectedAmount] = useState(0);
   const [discrepancyReason, setDiscrepancyReason] = useState("");
   const [billCopy, setBillCopy] = useState(null);
+  const [description, setDescription] = useState("");
 
   // Determine the charge type automatically
   const chargeType =
@@ -24,13 +25,14 @@ const IncorrectBillAmount = () => {
       chargeType,
       discrepancyReason,
       billCopy,
+      description,
     };
     console.log("Form Submitted:", formData);
     // Handle form submission logic (e.g., sending to a backend API)
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <h2>Incorrect Bill Amount Complaint Form</h2>
       
       <h3 className="small-slim-heading">Billed amount being is overcharged, and undercharged.</h3>
@@ -109,6 +111,18 @@ const IncorrectBillAmount = () => {
         />
       </div>
 
+      {/* Description */}
+      <div className="form-group">
+        <label htmlFor="description">Description (Optional)</label>
+        <textarea
+          id="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Provide additional details..."
+          rows="4"
+        />
+      </div>
+
       <button type="submit" className="submit-button">
         Submit Complaint
       </button>
@@ -117,3 +131,4 @@ const IncorrectBillAmount = () => {
 };
 
 export default IncorrectBillAmount;
+

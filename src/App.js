@@ -10,7 +10,11 @@ import TrackComplaints from './views/Complains/TrackComplain/TrackComplain';
 import LodgeComplaint from './views/Complains/LodgeComplaint_/LodgeComplaints_';
 import LoginPage from './views/Login/login';
 import AuthLayoutRoute from './layouts/Auth';
-
+import Login from './views/Auth/Login';
+import Signup from './views/Auth/Signup';
+import ForgetPassword from './views/Auth/ForgetPass';
+import OTPVerificationPage from './views/Auth/OTPVerification';
+import ChangePassword from './views/Auth/ChangePassword';
 function App() {
     return (
         <Router>
@@ -23,7 +27,11 @@ function App() {
                 <Route path="/track-complaints" element={<DashboardLayout><TrackComplaints /></DashboardLayout>} />
                 <Route path="/lodge-complaint" element={<DashboardLayout><LodgeComplaint /></DashboardLayout>} />
                 {/* Auth Route */}
-                <Route path="/signin" element={<AuthLayoutRoute><LoginPage /></AuthLayoutRoute>} />
+                <Route path="/signin" element={<AuthLayoutRoute><Login /></AuthLayoutRoute>} />
+                <Route path="/signup" element={<AuthLayoutRoute><Signup /></AuthLayoutRoute>} />
+                <Route path="/forget-password" element={<AuthLayoutRoute><ForgetPassword /></AuthLayoutRoute>} />
+                <Route path="/otp-verification" element={<AuthLayoutRoute><OTPVerificationPage /></AuthLayoutRoute>} />
+                <Route path="/change-password" element={<AuthLayoutRoute><ChangePassword /></AuthLayoutRoute>} />
                 {/* Redirect to Dashboard */}
                 <Route path="*" element={<Navigate to="/dashboard" />} />
             </Routes>

@@ -42,7 +42,7 @@ const IncorrectReading = () => {
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form  onSubmit={handleSubmit}>
       <h2>Incorrect Reading Complaint</h2>
 
       <h3 className="small-slim-heading">The meter reading on the bill doesn't match the actual reading</h3>

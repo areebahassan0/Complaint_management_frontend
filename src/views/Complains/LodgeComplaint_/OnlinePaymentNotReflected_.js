@@ -6,6 +6,7 @@ const OnlinePaymentNotReflected = ({ subType }) => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const [transactionID, setTransactionID] = useState("");
   const [paymentProof, setPaymentProof] = useState(null);
+  const [description, setDescription] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,7 +35,7 @@ const OnlinePaymentNotReflected = ({ subType }) => {
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form  onSubmit={handleSubmit}>
       <h2>{subType} Online Payment  Complaint</h2>
        
       <h3 className="small-slim-heading">Payment made online is not showing in the system</h3>
@@ -98,6 +99,18 @@ const OnlinePaymentNotReflected = ({ subType }) => {
           id="paymentProof"
           onChange={handleFileChange}
           required
+        />
+      </div>
+
+       {/* Description */}
+       <div className="form-group">
+        <label htmlFor="description">Description (Optional)</label>
+        <textarea
+          id="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Provide additional details..."
+          rows="4"
         />
       </div>
 

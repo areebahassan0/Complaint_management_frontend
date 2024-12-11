@@ -13,6 +13,7 @@ const VoltageComplaint = () => {
   const [level, setLevel] = useState("low");
   const [frequency, setFrequency] = useState("");
   const [intensity, setIntensity] = useState("");
+  const [attachedFiles, setAttachedFiles] = useState([]); // Array for attached files
 
   // Handle time changes
   const handleVoltageTimeChange = (field, value) => {
@@ -30,6 +31,11 @@ const VoltageComplaint = () => {
       updatedLevels[index] = value;
       setVoltageLevel(updatedLevels);
     }
+  };
+
+  // Handle file attachments
+  const handleFileChange = (e) => {
+    setAttachedFiles([...e.target.files]);
   };
 
   const handleAddVoltageLevel = () => {
@@ -57,7 +63,7 @@ const VoltageComplaint = () => {
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <h2>Voltage Complaint Form</h2>
       <h3 className="small-slim-heading">Low, high, or fluctuating voltage impacts appliances</h3>
       {/* Date of Voltage Issue */}
@@ -207,11 +213,31 @@ const VoltageComplaint = () => {
         ></textarea>
       </div>
 
+       {/* File Attachment */}
+  <div className="form-group">
+  <label htmlFor="attachedFiles">Attach Files (Optional)</label>
+  <input
+    type="file"
+    id="attachedFiles"
+    multiple
+    onChange={handleFileChange}
+  />
+  {attachedFiles.length > 0 && (
+    <ul>
+      {Array.from(attachedFiles).map((file, index) => (
+        <li key={index}>{file.name}</li>
+      ))}
+    </ul>
+  )}
+</div>
+
       <button type="submit" className="submit-button">
         Submit Complaint
       </button>
     </form>
   );
+
+
 };
 
 export default VoltageComplaint;

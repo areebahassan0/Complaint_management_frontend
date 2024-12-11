@@ -14,6 +14,7 @@ const ReportOutageForm = () => {
   const [scheduledStartMinutes, setScheduledStartMinutes] = useState(0);
   const [scheduledStartPeriod, setScheduledStartPeriod] = useState("AM");
   const [scheduledDuration, setScheduledDuration] = useState(0); // in minutes
+  const [attachedFiles, setAttachedFiles] = useState([]); 
 
   // Handle time changes for start and scheduled times
   const handleTimeChange = (type, unit, value) => {
@@ -32,6 +33,12 @@ const ReportOutageForm = () => {
   // Format time to HH:MM AM/PM
   const formatTime = (hours, minutes, period) => {
     return `${hours}:${minutes < 10 ? "0" + minutes : minutes} ${period}`;
+  };
+
+
+  // Handle file attachments
+  const handleFileChange = (e) => {
+    setAttachedFiles([...e.target.files]);
   };
 
   // Handle form submission
@@ -62,12 +69,13 @@ const ReportOutageForm = () => {
     setScheduledStartMinutes(0);
     setScheduledStartPeriod("AM");
     setScheduledDuration(0);
+    setAttachedFiles([]);
 
     alert("Your outage report has been submitted successfully!");
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form  onSubmit={handleSubmit}>
       <h2>Report an Outage Form</h2>
 
       {/* Outage Date */}
@@ -153,6 +161,24 @@ const ReportOutageForm = () => {
         />
       </div>
 
+
+      <div className="form-group">
+        <label htmlFor="attachedFiles">Attach Files (Optional)</label>
+        <input
+          type="file"
+          id="attachedFiles"
+          multiple
+          onChange={handleFileChange}
+        />
+        {attachedFiles.length > 0 && (
+          <ul>
+            {Array.from(attachedFiles).map((file, index) => (
+              <li key={index}>{file.name}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+
       {/* Extended Outage Radio Button */}
       <div className="form-group">
         <label>Is outage extended?</label>
@@ -182,7 +208,7 @@ const ReportOutageForm = () => {
 
       {/* Extended Outage Details */}
       {isExtendedOutage && (
-        <div className="extended-outage">
+        <div >
           <h3>Extended Outage Details</h3>
            
           <h4 className="small-slim-heading">Power outage lasting longer than expected or announced</h4>

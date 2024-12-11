@@ -10,6 +10,7 @@ const PhaseComplaint = () => {
     duration: 0,
     appliances: "",
   });
+  const [attachedFiles, setAttachedFiles] = useState([]);
 
   const phases = ["Phase 1", "Phase 2", "Phase 3"];
 
@@ -34,6 +35,10 @@ const PhaseComplaint = () => {
     return `${hours}:${minutes < 10 ? "0" + minutes : minutes} ${period}`;
   };
 
+  const handleFileChange = (e) => {
+    setAttachedFiles([...e.target.files]);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Submitted Data:", {
@@ -49,7 +54,7 @@ const PhaseComplaint = () => {
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <h2>Phase Complaint Form</h2>
 
       <h3 className="small-slim-heading">
@@ -164,6 +169,24 @@ const PhaseComplaint = () => {
           placeholder="Add additional details"
         />
       </div>
+
+       {/* File Attachment */}
+  <div className="form-group">
+  <label htmlFor="attachedFiles">Attach Files (Optional)</label>
+  <input
+    type="file"
+    id="attachedFiles"
+    multiple
+    onChange={handleFileChange}
+  />
+  {attachedFiles.length > 0 && (
+    <ul>
+      {Array.from(attachedFiles).map((file, index) => (
+        <li key={index}>{file.name}</li>
+      ))}
+    </ul>
+  )}
+</div>
 
       {/* Submit Button */}
       <button type="submit" className="submit-button">

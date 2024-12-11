@@ -66,7 +66,7 @@ const DuplicateBill = () => {
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <h2>Duplicate Bill Complaint Form</h2>
       
       <h3 className="small-slim-heading">Duplicate bills or repeated arrears, such as two bills for the same month or a previous balance appearing twice</h3>

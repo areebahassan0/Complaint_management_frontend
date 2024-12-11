@@ -17,7 +17,7 @@ const IncorrectLoadShedding = () => {
   };
 
   const handleNumOutagesChange = (value) => {
-    const parsedValue = Math.max(1, Math.min(10, Number(value))); // Limit the number of outages between 1 and 10
+    const parsedValue = Math.max(0, Math.min(10, Number(value))); // Limit the number of outages between 1 and 10
     setNumOutages(parsedValue);
     setOutageTimings(
       Array.from({ length: parsedValue }, (_, i) => outageTimings[i] || { hours: "", minutes: "", period: "AM" })
@@ -42,7 +42,7 @@ const IncorrectLoadShedding = () => {
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form  onSubmit={handleSubmit}>
       <h2>Incorrect Load Shedding Schedule Form</h2>
        
       <h3 className="small-slim-heading">Outages do not match the schedule provided by the utility company</h3>

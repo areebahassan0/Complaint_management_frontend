@@ -7,6 +7,7 @@ const BankTransferNotReflected = ({ subType }) => {
   const [transactionReference, setTransactionReference] = useState("");
   const [bankAccountNumber, setBankAccountNumber] = useState("");
   const [bankTransferReceipt, setBankTransferReceipt] = useState(null);
+  const [description, setDescription] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +43,7 @@ const BankTransferNotReflected = ({ subType }) => {
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <h2>{subType} Bank Transfer Complaint</h2>
 
       <h3 className="small-slim-heading">Payment made via bank is not reflected</h3>
@@ -160,6 +161,18 @@ const BankTransferNotReflected = ({ subType }) => {
           id="bankTransferReceipt"
           onChange={handleFileChange}
           required
+        />
+      </div>
+
+       {/* Description */}
+       <div className="form-group">
+        <label htmlFor="description">Description (Optional)</label>
+        <textarea
+          id="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Provide additional details..."
+          rows="4"
         />
       </div>
 

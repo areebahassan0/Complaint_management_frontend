@@ -6,6 +6,7 @@ const FrequentLoadShedding = () => {
   const [occurrenceDate, setOccurrenceDate] = useState("");
   const [description, setDescription] = useState("");
   const [attachedFile, setAttachedFile] = useState(null);
+  const [timePreferences, setTimePreferences] = useState({ weekends: false, morning: false });
 
   const handleOutageTimingChange = (index, field, value) => {
     const updatedTimings = [...outageTimings];
@@ -17,7 +18,7 @@ const FrequentLoadShedding = () => {
   };
 
   const handleNumOutagesChange = (value) => {
-    const parsedValue = Math.max(1, Math.min(10, Number(value))); // Limit the number of outages between 1 and 10
+    const parsedValue = Math.max(0, Math.min(10, Number(value))); // Limit the number of outages between 1 and 10
     setNumOutages(parsedValue);
     setOutageTimings(
       Array.from({ length: parsedValue }, (_, i) => outageTimings[i] || { hours: "", minutes: "", period: "AM" })
@@ -28,6 +29,13 @@ const FrequentLoadShedding = () => {
     setAttachedFile(event.target.files[0]);
   };
 
+  const handlePreferenceChange = (preference) => {
+    setTimePreferences((prev) => ({
+      ...prev,
+      [preference]: !prev[preference],
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = {
@@ -36,15 +44,16 @@ const FrequentLoadShedding = () => {
       outageTimings,
       description,
       attachedFile,
+      timePreferences,
     };
     console.log("Form Submitted:", formData);
     alert("Complaint submitted successfully!");
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <h2>Frequent Load Shedding Form</h2>
-       
+
       <h3 className="small-slim-heading">Several outages occurring within the same day</h3>
       {/* Date of Occurrence */}
       <div className="form-group">
@@ -120,6 +129,33 @@ const FrequentLoadShedding = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
+      </div>
+
+      {/* Time Preference */}
+      <div className="form-group">
+        <label>Time Preference</label>
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              name="timePreference"
+              checked={timePreferences.weekends}
+              onChange={() => handlePreferenceChange("weekends")}
+            />
+            Weekends
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              name="timePreference"
+              checked={timePreferences.morning}
+              onChange={() => handlePreferenceChange("morning")}
+            />
+            Morning
+          </label>
+        </div>
       </div>
 
       {/* Attach Image */}

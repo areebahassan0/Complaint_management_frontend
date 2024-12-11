@@ -16,7 +16,7 @@ import BankTransferNotReflected from "./BankTransferNotReflected_";
 import OnlinePaymentNotReflected from "./OnlinePaymentNotReflected_";
 import LateFeeDispute from "./LateFeeDispute_";
 import PaidOnTimeChargedLate from "./PaidOnTimeChargedLate_";
-
+import Others from "./Others_";
 import "../../../assets/css/ComplaintActions.css";
 
 const ComplaintForm = () => {
@@ -25,7 +25,8 @@ const ComplaintForm = () => {
   const [faultyMeterSubType, setFaultyMeterSubType] = useState(null); // State for Faulty Meter sub-options
   const [paymentNotReflectedType, setPaymentNotReflectedType] = useState(null); // State for Payment Not Reflected sub-options
   const [latePaymentFeesType, setLatePaymentFeesType] = useState(null);
-  const brands = ["Load Shedding", "Billing Complaints"];
+  const brands = ["Load Shedding", "Billing Complaints","Others"];
+
 
   // Define the complaint types
   const complaintTypesForLoadShedding = [
@@ -51,7 +52,9 @@ const ComplaintForm = () => {
   const complaintTypes =
     selectedBrand === "Load Shedding"
       ? complaintTypesForLoadShedding
-      : complaintTypesOther;
+      : selectedBrand === "Billing Complaints"
+      ? complaintTypesOther
+      : [];
 
   return (
     <div>
@@ -77,6 +80,7 @@ const ComplaintForm = () => {
   ))}
 </div>
 
+
 <div className="sub-options">
   {complaintTypes.map(({ label, submenu }) => (
     <button
@@ -95,6 +99,7 @@ const ComplaintForm = () => {
     </button>
   ))}
 </div>
+
 </div>
 
     
@@ -173,6 +178,7 @@ const ComplaintForm = () => {
 
 
       {/* Render Complaint Forms Inline */}
+      {selectedBrand === "Others" && <Others/>}
       {selectedComplaintType === "Report an Outage" && selectedBrand === "Load Shedding" && <ReportOutageForm />}
       {selectedComplaintType === "Frequent Load Shedding" && selectedBrand === "Load Shedding" && <FrequentLoadShedding />}
       {selectedComplaintType === "Incorrect Load Shedding Schedule" && selectedBrand === "Load Shedding" && <IncorrectLoadShedding />}

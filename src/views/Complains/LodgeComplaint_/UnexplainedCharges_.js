@@ -6,6 +6,11 @@ const UnexplainedCharges = () => {
   const [totalBilledAmount, setTotalBilledAmount] = useState("");
   const [surchargeAmount, setSurchargeAmount] = useState("");
   const [description, setDescription] = useState("");
+  const [attachedFiles, setAttachedFiles] = useState([]); // Array for attached files
+
+  const handleFileChange = (e) => {
+    setAttachedFiles([...e.target.files]);
+  };
 
 
   const handleSubmit = (e) => {
@@ -23,7 +28,7 @@ const UnexplainedCharges = () => {
 
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form  onSubmit={handleSubmit}>
       <h2>Unexplained Charges Complaint Form</h2>
       <h3 className="small-slim-heading">Excessive or unclear additional fees, taxes, or service charges added to the bill</h3>
       {/* Type of Surcharges and Fees */}
@@ -99,6 +104,24 @@ const UnexplainedCharges = () => {
           placeholder="Provide additional details about the charges..."
           rows="4"
         />
+      </div>
+
+      {/* File Attachment */}
+      <div className="form-group">
+        <label htmlFor="attachedFiles">Attach Files (Optional)</label>
+        <input
+          type="file"
+          id="attachedFiles"
+          multiple
+          onChange={handleFileChange}
+        />
+        {attachedFiles.length > 0 && (
+          <ul>
+            {Array.from(attachedFiles).map((file, index) => (
+              <li key={index}>{file.name}</li>
+            ))}
+          </ul>
+        )}
       </div>
 
       <button type="submit" className="submit-button">

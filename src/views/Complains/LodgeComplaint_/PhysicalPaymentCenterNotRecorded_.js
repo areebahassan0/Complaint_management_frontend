@@ -37,7 +37,7 @@ const PhysicalPaymentCenterNotRecorded = ({ subType }) => {
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <h2>{subType}Physical Payment Center Complaint</h2>
       
       <h3 className="small-slim-heading">Payment made at a payment center is not recorded</h3>

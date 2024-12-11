@@ -5,6 +5,12 @@ const MeterIssue = () => {
   const [meterIssueType, setMeterIssueType] = useState("");
   const [dateIssueNoticed, setDateIssueNoticed] = useState("");
   const [description, setDescription] = useState("");
+  const [attachedFile, setAttachedFile] = useState(null);
+
+  // Handle file upload
+  const handleFileUpload = (event) => {
+    setAttachedFile(event.target.files[0]);
+  };
 
   // Handle form submission
   const handleSubmit = (e) => {
@@ -14,6 +20,7 @@ const MeterIssue = () => {
       meterIssueType,
       dateIssueNoticed,
       description,
+      attachedFile,
     };
 
     console.log("Meter issue reported: ", formData);
@@ -22,14 +29,16 @@ const MeterIssue = () => {
     setMeterIssueType("");
     setDateIssueNoticed("");
     setDescription("");
+    setAttachedFile(null);
     alert("Your meter issue has been submitted successfully!");
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <h2>Meter Issue Complaint</h2>
       
       <h3 className="small-slim-heading">The meter itself is malfunctioning and producing incorrect data.</h3>
+
       {/* Type of Meter Issue Noticed */}
       <div className="form-group">
         <label htmlFor="meterIssueType">Type of Meter Issue Noticed</label>
@@ -72,6 +81,18 @@ const MeterIssue = () => {
         />
       </div>
 
+      {/* Attach Supporting Document */}
+      <div className="form-group">
+        <label htmlFor="attachment">Attach Supporting Document (Optional)</label>
+        <input
+          type="file"
+          id="attachment"
+          accept="image/*"
+          onChange={handleFileUpload}
+        />
+        {attachedFile && <p>Attached File: {attachedFile.name}</p>}
+      </div>
+
       <button type="submit" className="submit-button">
         Submit Complaint
       </button>
@@ -80,4 +101,3 @@ const MeterIssue = () => {
 };
 
 export default MeterIssue;
-

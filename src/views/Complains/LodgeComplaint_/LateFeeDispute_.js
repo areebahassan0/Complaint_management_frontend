@@ -5,6 +5,12 @@ const LateFeeDispute = ({ subType }) => {
   const [lateFeeAmount, setLateFeeAmount] = useState("");
   const [disputeReason, setDisputeReason] = useState("");
   const [description, setDescription] = useState("");
+  const [attachedFiles, setAttachedFiles] = useState([]); 
+
+  const handleFileChange = (e) => {
+    setAttachedFiles([...e.target.files]);
+  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +33,7 @@ const LateFeeDispute = ({ subType }) => {
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <h2>{subType} Late Fee Dispute Complaint</h2>
       
       <h3 className="small-slim-heading">Users dispute the amount of the late fee</h3>
@@ -79,6 +85,23 @@ const LateFeeDispute = ({ subType }) => {
           placeholder="Provide additional details..."
           rows="4"
         />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="attachedFiles">Attach Files (Optional)</label>
+        <input
+          type="file"
+          id="attachedFiles"
+          multiple
+          onChange={handleFileChange}
+        />
+        {attachedFiles.length > 0 && (
+          <ul>
+            {Array.from(attachedFiles).map((file, index) => (
+              <li key={index}>{file.name}</li>
+            ))}
+          </ul>
+        )}
       </div>
 
       <button type="submit" className="submit-button">

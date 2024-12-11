@@ -27,7 +27,7 @@ const UnexplainedArears = () => {
  
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <h2>Unresolved Arears Complaint Form</h2>
 
      

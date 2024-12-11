@@ -40,7 +40,7 @@ const PaidOnTimeChargedLate = ({ subType }) => {
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form  onSubmit={handleSubmit}>
       <h2>{subType} Paid on Time, Charged Late Complaint</h2>
         
       <h3 className="small-slim-heading">User paid within the due date but was charged a late fee</h3>
