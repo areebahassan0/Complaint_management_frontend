@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { lodgeComplaint } from "../../../services/history.service";
 const IncorrectReading = () => {
   const [billingPeriod, setBillingPeriod] = useState("");
   const [billedMeterReading, setBilledMeterReading] = useState("");
@@ -8,7 +8,8 @@ const IncorrectReading = () => {
   const [description, setDescription] = useState("");
   const [attachedFile, setAttachedFile] = useState(null);
 
-  const handleSubmit = (e) => {
+  const FURTHER_SUB_CATEGORY_ID= 14;
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
     if (!attachedFile) {
@@ -21,22 +22,43 @@ const IncorrectReading = () => {
       billedMeterReading,
       actualMeterReading,
       dateOfActualReading,
-      description,
-      attachedFile,
     };
-
-    console.log("Complaint submitted: ", formData);
-
+    const dataPayload = {
+        further_subcategory_id: FURTHER_SUB_CATEGORY_ID,
+        description:  description || "-",
+        form_data: formData,
+        supporting_file: attachedFile|| "-",
+      };
+    
+      try {
+        // Call the lodgeComplaint service
+        const response = await lodgeComplaint(dataPayload);
+    
+        if (response.status) {
+          alert("Your complaint has been submitted successfully!");
+          // Reset the form
+          setBillingPeriod("");
+          setBilledMeterReading("");
+          setActualMeterReading("");
+          setDateOfActualReading("");
+          setDescription("");
+          setAttachedFile(null);
+          
+          
+        } else {
+          alert(response.message || "Failed to submit your complaint.");
+        }
+      } catch (error) {
+        console.error("Error submitting complaint:", error);
+        alert("An error occurred while submitting your complaint.");
+      }
+    
+    }
+    
+  
     // Reset the form
-    setBillingPeriod("");
-    setBilledMeterReading("");
-    setActualMeterReading("");
-    setDateOfActualReading("");
-    setDescription("");
-    setAttachedFile(null);
-    alert("Your complaint has been submitted successfully!");
-  };
-
+   
+    
   const handleFileChange = (e) => {
     setAttachedFile(e.target.files[0]);
   };

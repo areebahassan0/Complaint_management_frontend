@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { lodgeComplaint } from "../../../services/history.service";
 const PaidOnTimeChargedLate = ({ subType }) => {
   const [paymentDate, setPaymentDate] = useState("");
   const [amountPaid, setAmountPaid] = useState("");
@@ -9,7 +9,9 @@ const PaidOnTimeChargedLate = ({ subType }) => {
   const [description, setDescription] = useState("");
   const [receipt, setReceipt] = useState(null);
 
-  const handleSubmit = (e) => {
+
+  const FURTHER_SUB_CATEGORY_ID = 23
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const formData = {
       subType,
@@ -18,22 +20,40 @@ const PaidOnTimeChargedLate = ({ subType }) => {
       paymentMethod,
       transactionReference,
       lateFeeAmount,
-      description,
-      receipt,
     };
-
-    console.log("Paid On Time But Charged Late Complaint: ", formData);
-
-    // Reset form
-    setPaymentDate("");
-    setAmountPaid("");
-    setPaymentMethod("");
-    setTransactionReference("");
-    setLateFeeAmount("");
-    setDescription("");
-    setReceipt(null);
-    alert("Your complaint has been submitted successfully!");
-  };
+    const dataPayload = {
+              further_subcategory_id: FURTHER_SUB_CATEGORY_ID,
+              description:  description || "-",
+              form_data: formData,
+              supporting_file: receipt || "-",
+            };
+          
+            try {
+              // Call the lodgeComplaint service
+              const response = await lodgeComplaint(dataPayload);
+          
+              if (response.status) {
+                alert("Your complaint has been submitted successfully!");
+                // Reset the form
+                 // Reset form
+                 setPaymentDate("");
+                 setAmountPaid("");
+                 setPaymentMethod("");
+                 setTransactionReference("");
+                 setLateFeeAmount("");
+                 setDescription("");
+                 setReceipt(null);
+                
+                
+              } else {
+                alert(response.message || "Failed to submit your complaint.");
+              }
+            } catch (error) {
+              console.error("Error submitting complaint:", error);
+              alert("An error occurred while submitting your complaint.");
+            }
+          
+          }
 
   const handleFileChange = (e) => {
     setReceipt(e.target.files[0]);

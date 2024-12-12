@@ -1,18 +1,19 @@
 import React, { useState } from "react";
-
+import { lodgeComplaint } from "../../../services/history.service";
 const LateFeeDispute = ({ subType }) => {
   const [billingPeriod, setBillingPeriod] = useState("");
   const [lateFeeAmount, setLateFeeAmount] = useState("");
   const [disputeReason, setDisputeReason] = useState("");
   const [description, setDescription] = useState("");
   const [attachedFiles, setAttachedFiles] = useState([]); 
+  const FURTHER_SUB_CATEGORY_ID = 24
 
   const handleFileChange = (e) => {
     setAttachedFiles([...e.target.files]);
   };
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const formData = {
       subType,
@@ -21,16 +22,37 @@ const LateFeeDispute = ({ subType }) => {
       disputeReason,
       description,
     };
-
-    console.log("Late Fee Dispute Complaint: ", formData);
-
-    // Reset form
-    setBillingPeriod("");
-    setLateFeeAmount("");
-    setDisputeReason("");
-    setDescription("");
-    alert("Your complaint has been submitted successfully!");
-  };
+    const dataPayload = {
+                  further_subcategory_id: FURTHER_SUB_CATEGORY_ID,
+                  description:  description || "-",
+                  form_data: formData,
+                  supporting_file: attachedFiles || "-",
+                };
+              
+                try {
+                  // Call the lodgeComplaint service
+                  const response = await lodgeComplaint(dataPayload);
+              
+                  if (response.status) {
+                    alert("Your complaint has been submitted successfully!");
+                    // Reset the form
+                     // Reset form
+                    setBillingPeriod("");
+                    setLateFeeAmount("");
+                    setDisputeReason("");
+                    setDescription("");
+                    
+                    
+                  } else {
+                    alert(response.message || "Failed to submit your complaint.");
+                  }
+                } catch (error) {
+                  console.error("Error submitting complaint:", error);
+                  alert("An error occurred while submitting your complaint.");
+                }
+              
+              }
+   
 
   return (
     <form onSubmit={handleSubmit}>

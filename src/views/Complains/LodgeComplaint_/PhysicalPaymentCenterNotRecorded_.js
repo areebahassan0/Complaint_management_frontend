@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { lodgeComplaint } from "../../../services/history.service";
 const PhysicalPaymentCenterNotRecorded = ({ subType }) => {
   const [paymentDate, setPaymentDate] = useState("");
   const [paymentAmount, setPaymentAmount] = useState("");
@@ -7,8 +7,9 @@ const PhysicalPaymentCenterNotRecorded = ({ subType }) => {
   const [receiptNumber, setReceiptNumber] = useState("");
   const [paymentProof, setPaymentProof] = useState(null);
   const [description, setDescription] = useState("");
-
-  const handleSubmit = (e) => {
+ 
+  const FURTHER_SUB_CATEGORY_ID = 21
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const formData = {
       subType,
@@ -16,21 +17,40 @@ const PhysicalPaymentCenterNotRecorded = ({ subType }) => {
       paymentAmount,
       paymentCenterLocation,
       receiptNumber,
-      paymentProof,
-      description,
     };
-
-    console.log("Physical Payment Center Not Recorded Complaint: ", formData);
-
-    // Reset form
-    setPaymentDate("");
-    setPaymentAmount("");
-    setPaymentCenterLocation("");
-    setReceiptNumber("");
-    setPaymentProof(null);
-    setDescription("");
-    alert("Your complaint has been submitted successfully!");
-  };
+    const dataPayload = {
+          further_subcategory_id: FURTHER_SUB_CATEGORY_ID,
+          description:  description || "-",
+          form_data: formData,
+          supporting_file: paymentProof || "-",
+        };
+      
+        try {
+          // Call the lodgeComplaint service
+          const response = await lodgeComplaint(dataPayload);
+      
+          if (response.status) {
+            alert("Your complaint has been submitted successfully!");
+            // Reset the form
+             // Reset form
+              setPaymentDate("");
+              setPaymentAmount("");
+              setPaymentCenterLocation("");
+              setReceiptNumber("");
+              setPaymentProof(null);
+              setDescription("");
+            
+            
+          } else {
+            alert(response.message || "Failed to submit your complaint.");
+          }
+        } catch (error) {
+          console.error("Error submitting complaint:", error);
+          alert("An error occurred while submitting your complaint.");
+        }
+      
+      }
+    
 
   const handleFileChange = (e) => {
     setPaymentProof(e.target.files[0]);

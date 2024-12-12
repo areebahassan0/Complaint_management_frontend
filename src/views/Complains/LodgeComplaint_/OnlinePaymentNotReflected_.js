@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { lodgeComplaint } from "../../../services/history.service";
 const OnlinePaymentNotReflected = ({ subType }) => {
   const [paymentDate, setPaymentDate] = useState("");
   const [paymentAmount, setPaymentAmount] = useState("");
@@ -7,8 +7,9 @@ const OnlinePaymentNotReflected = ({ subType }) => {
   const [transactionID, setTransactionID] = useState("");
   const [paymentProof, setPaymentProof] = useState(null);
   const [description, setDescription] = useState("");
+  const FURTHER_SUB_CATEGORY_ID= 19;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const formData = {
       subType,
@@ -18,17 +19,37 @@ const OnlinePaymentNotReflected = ({ subType }) => {
       transactionID,
       paymentProof,
     };
+    const dataPayload = {
+            further_subcategory_id: FURTHER_SUB_CATEGORY_ID,
+            description:  description || "-",
+            form_data: formData,
+            supporting_file: paymentProof|| "-",
+          };
+        
+          try {
+            // Call the lodgeComplaint service
+            const response = await lodgeComplaint(dataPayload);
+        
+            if (response.status) {
+              alert("Your complaint has been submitted successfully!");
+              // Reset the form
+              setPaymentDate("");
+              setPaymentAmount("");
+              setPaymentMethod("");
+              setTransactionID("");
+              setPaymentProof(null);
+              
+              
+            } else {
+              alert(response.message || "Failed to submit your complaint.");
+            }
+          } catch (error) {
+            console.error("Error submitting complaint:", error);
+            alert("An error occurred while submitting your complaint.");
+          }
+        
+        }
 
-    console.log("Payment Not Reflected Complaint: ", formData);
-
-    // Reset form
-    setPaymentDate("");
-    setPaymentAmount("");
-    setPaymentMethod("");
-    setTransactionID("");
-    setPaymentProof(null);
-    alert("Your complaint has been submitted successfully!");
-  };
 
   const handleFileChange = (e) => {
     setPaymentProof(e.target.files[0]);

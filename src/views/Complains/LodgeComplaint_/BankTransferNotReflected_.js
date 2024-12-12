@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { lodgeComplaint } from "../../../services/history.service";
 const BankTransferNotReflected = ({ subType }) => {
   const [paymentDate, setPaymentDate] = useState("");
   const [paymentAmount, setPaymentAmount] = useState("");
@@ -9,7 +9,8 @@ const BankTransferNotReflected = ({ subType }) => {
   const [bankTransferReceipt, setBankTransferReceipt] = useState(null);
   const [description, setDescription] = useState("");
 
-  const handleSubmit = (e) => {
+  const FURTHER_SUB_CATEGORY_ID= 20;
+  const handleSubmit = async(e) => {
     e.preventDefault();
     if (bankAccountNumber.length !== 11) {
       alert("Bank Account Number must be exactly 11 digits.");
@@ -23,20 +24,39 @@ const BankTransferNotReflected = ({ subType }) => {
       bankName,
       transactionReference,
       bankAccountNumber,
-      bankTransferReceipt,
     };
-
-    console.log("Bank Transfer Not Reflected Complaint: ", formData);
-
-    // Reset form
-    setPaymentDate("");
-    setPaymentAmount("");
-    setBankName("");
-    setTransactionReference("");
-    setBankAccountNumber("");
-    setBankTransferReceipt(null);
-    alert("Your complaint has been submitted successfully!");
-  };
+    const dataPayload = {
+                further_subcategory_id: FURTHER_SUB_CATEGORY_ID,
+                description:  description || "-",
+                form_data: formData,
+                supporting_file: bankTransferReceipt|| "-",
+              };
+            
+              try {
+                // Call the lodgeComplaint service
+                const response = await lodgeComplaint(dataPayload);
+            
+                if (response.status) {
+                  alert("Your complaint has been submitted successfully!");
+                  // Reset the form
+                  setPaymentDate("");
+                  setPaymentAmount("");
+                  setBankName("");
+                  setTransactionReference("");
+                  setBankAccountNumber("");
+                  setBankTransferReceipt(null);
+                  
+                  
+                } else {
+                  alert(response.message || "Failed to submit your complaint.");
+                }
+              } catch (error) {
+                console.error("Error submitting complaint:", error);
+                alert("An error occurred while submitting your complaint.");
+              }
+            
+            }
+    
 
   const handleFileChange = (e) => {
     setBankTransferReceipt(e.target.files[0]);

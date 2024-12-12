@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { lodgeComplaint } from "../../../services/history.service";
 const PhaseComplaint = () => {
   const [selectedPhases, setSelectedPhases] = useState([]);
+  const [description, setDescription] = useState("");
   const [formData, setFormData] = useState({
     date: "",
     startHours: 0,

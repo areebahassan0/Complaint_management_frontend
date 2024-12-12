@@ -28,9 +28,9 @@ const IncorrectBillAmount = () => {
     };
     const dataPayload = {
       further_subcategory_id: FURTHER_SUB_CATEGORY_ID,
-      description:  "-",
+      description:  description || "-",
       form_data: formData,
-      supporting_file: "-",
+      supporting_file: billCopy || "-",
     };
   
     try {
