@@ -43,30 +43,32 @@ const ReportOutageForm = () => {
   };
 
   // Handle form submission
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData ={}
-    isExtendedOutage ?
-    formData = {
-      outageDate,
-      outageStartTime: formatTime(outageStartHours, outageStartMinutes, outageStartPeriod),
-      outageDuration,
-    } : 
-    formData = {
-      scheduledStartTime: formatTime(scheduledStartHours, scheduledStartMinutes, scheduledStartPeriod),
-      scheduledDuration,
-    }
+  
+    // Initialize formData based on the condition
+    const formData = isExtendedOutage
+      ? {
+          outageDate,
+          outageStartTime: formatTime(outageStartHours, outageStartMinutes, outageStartPeriod),
+          outageDuration,
+        }
+      : {
+          scheduledStartTime: formatTime(scheduledStartHours, scheduledStartMinutes, scheduledStartPeriod),
+          scheduledDuration,
+        };
+  
     const dataPayload = {
       further_subcategory_id: FURTHER_SUB_CATEGORY_ID,
       description: description || "-",
       form_data: formData,
       supporting_file: attachedFiles || "-",
     };
-
+  
     try {
       // Call the lodgeComplaint service
       const response = await lodgeComplaint(dataPayload);
-
+  
       if (response.status) {
         alert("Your complaint has been submitted successfully!");
         // Reset the form
@@ -89,10 +91,8 @@ const ReportOutageForm = () => {
       console.error("Error submitting complaint:", error);
       alert("An error occurred while submitting your complaint.");
     }
+  };
   
-}
-
-    
 
   return (
     <form  onSubmit={handleSubmit}>

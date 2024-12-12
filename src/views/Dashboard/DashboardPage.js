@@ -3,29 +3,44 @@ import { useNavigate } from 'react-router-dom';
 import DashboardLayout from '../../layouts/DashboardLayout';
 
 const DashboardPage = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    return (
-        <DashboardLayout>
-          <div className="dashboard-content">
-            <h2 className="custom-text">Your Voice Matters – File Complaints Quickly and Efficiently</h2>
-      
-            <div class="button-container">
-                
-                    <button class="button-74" role="button" onclick="navigate('/dashboard/lodge-complaint')">Lodge your complaint</button>
+  // Handlers for navigation
+  const onLodge = () => {
+    navigate('/lodge-complaint');
+  };
 
-                    <button class="button-74" role="button" onclick="navigate('/dashboard/track-complaints')">Track your complaint</button>
-                
-                    <button class="button-74" role="button" onclick="navigate('/dashboard/complaints-history')">View Complaint History</button>
-               
-            </div>
+  const onTrack = () => {
+    navigate('/track-complaints');
+  };
 
+  const onViewHistory = () => {
+    navigate('/complaints-history');
+  };
 
+  return (
+    <DashboardLayout>
+      <div className="dashboard-content">
+        <h2 className="custom-text">
+          Your Voice Matters – File Complaints Quickly and Efficiently
+        </h2>
+
+        <div className="button-container">
+          <button className="button-74" role="button" onClick={onLodge}>
+            Lodge your complaint
+          </button>
+
+          <button className="button-74" role="button" onClick={onTrack}>
+            Track your complaint
+          </button>
+
+          <button className="button-74" role="button" onClick={onViewHistory}>
+            View Complaint History
+          </button>
         </div>
-        </DashboardLayout>
-    );
-
-      
+      </div>
+    </DashboardLayout>
+  );
 };
 
 export default DashboardPage;
