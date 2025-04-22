@@ -19,7 +19,11 @@ export const apiUrl = {
     lodge_complaint: 'complaints/create/',      // To lodge a new complaint
     track_complaint: 'complaints/track/',       // To track the status of a complaint
     delete_complaint: 'complaints/delete/',     // To delete a complaint
-
+    //ChatBot
+    sendMessage:'chatbot/chat/',
+    // Billing
+    get_current_method: 'billing/method/',
+    update_method:'billing/method/change/',
     // Additional endpoints for other functionalities can be added here
 };
 

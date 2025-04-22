@@ -7,7 +7,7 @@ const Header = ({ toggleSidebar, isSidebarOpen, hideMenu = false }) => {
 
     const handleAccountClick = () => {
         if (isAuth) {
-            navigate("/dashboard");
+            navigate("/home");
         } else {
             navigate("/signin");
         }
@@ -20,7 +20,7 @@ const Header = ({ toggleSidebar, isSidebarOpen, hideMenu = false }) => {
                     {isSidebarOpen ? '☰ Back' : '☰ Menu'}
                 </button>
             )}
-            <h1 className="global-header__logo">K-Link</h1>
+            <h1 className="global-header__logo">KEnergy-Link</h1>
             <div className="global-header__account" onClick={handleAccountClick}>
                 <svg
                     className="global-header__account-icon"

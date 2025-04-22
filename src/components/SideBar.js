@@ -17,12 +17,12 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                     </button>
                 </header>
         <ul className="sidebar-menu">
-          <li><a href="/dashboard">Dashboard</a></li>
-
-          <li><a href="/lodge-complaint">Lodge a Complaint</a></li>
-          <li><a href="/track-complaints">Track Complaint</a></li>
-          <li><a href="/complaints-history">Complaint History</a></li>
-          <li><a href="/settings">Settings</a></li>
+        <li><a href="/home">🏠 Home</a></li>
+        <li><a href="/dashboard">📣 Complaints</a></li>
+        <li><a href="/bills">🧾 Bills</a></li>
+        <li><a href="/e-payments">💳 E-Payments</a></li>
+        <li><a href="/consumption">📊 Consumption</a></li>
+        <li><a href="/home">🏠 Home</a></li>
         </ul>
       </aside>
     </>

@@ -1,46 +1,20 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import DashboardLayout from '../../layouts/DashboardLayout';
+import ModuleDashboard from '../Dashboard/ModuleDashboardPage';
+import ChatWidget from '../../components/ChatWidget';
 
-const DashboardPage = () => {
-  const navigate = useNavigate();
+const ComplaintDashboardPage = () => (
+  <>
+    <ModuleDashboard
+      title="Your Voice Matters – File Complaints Quickly and Efficiently"
+      options={[
+        { label: 'Lodge your complaint', path: '/lodge-complaint' },
+        { label: 'Track your complaint', path: '/track-complaints' },
+        { label: 'View Complaint History', path: '/complaints-history' }
+      ]}
+    />
+    {/* Chat widget sits on top of everything */}
+    <ChatWidget />
+  </>
+);
 
-  // Handlers for navigation
-  const onLodge = () => {
-    navigate('/lodge-complaint');
-  };
-
-  const onTrack = () => {
-    navigate('/track-complaints');
-  };
-
-  const onViewHistory = () => {
-    navigate('/complaints-history');
-  };
-
-  return (
-    <DashboardLayout>
-      <div className="dashboard-content">
-        <h2 className="custom-text">
-          Your Voice Matters – File Complaints Quickly and Efficiently
-        </h2>
-
-        <div className="button-container">
-          <button className="button-74" role="button" onClick={onLodge}>
-            Lodge your complaint
-          </button>
-
-          <button className="button-74" role="button" onClick={onTrack}>
-            Track your complaint
-          </button>
-
-          <button className="button-74" role="button" onClick={onViewHistory}>
-            View Complaint History
-          </button>
-        </div>
-      </div>
-    </DashboardLayout>
-  );
-};
-
-export default DashboardPage;
+export default ComplaintDashboardPage;

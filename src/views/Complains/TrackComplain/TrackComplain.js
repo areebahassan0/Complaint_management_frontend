@@ -31,6 +31,7 @@ const TrackHistory = () => {
                         : '-',
                     type: complaint.description || '-',
                     status: complaint.status || '-',
+                    further_subcategory_name:complaint.further_subcategory_name
                 }));
                 setRows(transformedData);
             } else {
@@ -61,7 +62,7 @@ const TrackHistory = () => {
 
     // Dynamic status styles
     const statusStyles = {
-        Pending: { backgroundColor: '#ffc107', color: '#fff' },
+        pending: { backgroundColor: '#ffc107', color: '#fff' },
         viewed: { backgroundColor: '#17a2b8', color: '#fff' },
     };
 
@@ -114,7 +115,7 @@ const TrackHistory = () => {
                 <DataTable
                     columns={[
                         {
-                            name: 'ID',
+                            name: 'Track ID',
                             selector: (row) => row.id,
                         },
                         {
@@ -126,7 +127,12 @@ const TrackHistory = () => {
                             selector: (row) => row.predicteddate,
                         },
                         {
-                            name: 'Type',
+                            
+                            name: 'Category',
+                            selector: rowData => rowData.further_subcategory_name,
+                        },
+                        {
+                            name: 'Description',
                             selector: (row) => row.type,
                         },
                         {

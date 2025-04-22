@@ -17,7 +17,7 @@ const Login = () => {
         const result = await login(formData);
         if (result.status) {
             setStatusMessage("Login successful!");
-            navigate("/dashboard");
+            navigate("/home");
         } else {
             setStatusMessage(result.message || "Login failed.");
         }

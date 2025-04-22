@@ -15,12 +15,16 @@ import Signup from './views/Auth/Signup';
 import ForgetPassword from './views/Auth/ForgetPass';
 import OTPVerificationPage from './views/Auth/OTPVerification';
 import ChangePassword from './views/Auth/ChangePassword';
+import HomePage from './views/Home/HomePage'
+import BillingDashboardPage from './views/Dashboard/BillingDashboardPage'
 function App() {
     return (
         <Router>
             <Routes>
                 {/* Define Dashboard Routes */}
+                <Route path="/home" element={<DashboardLayout><HomePage /></DashboardLayout>} />
                 <Route path="/dashboard" element={<DashboardLayout><DashboardPage /></DashboardLayout>} />
+                <Route path="/bills" element={<DashboardLayout><BillingDashboardPage /></DashboardLayout>} />
                 <Route path="/profile" element={<DashboardLayout><ProfilePage /></DashboardLayout>} />
                 <Route path="/settings" element={<DashboardLayout><SettingsPage /></DashboardLayout>} />
                 <Route path="/complaints-history" element={<DashboardLayout><HistoryTable /></DashboardLayout>} />

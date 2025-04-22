@@ -5,7 +5,7 @@ const AuthLayoutRoute = ({ children }) => {
     const isAuth = false; // Mocked authentication state for now
 
     if (isAuth) {
-        return <Navigate to="/dashboard" replace />;
+        return <Navigate to="/home" replace />;
     }
 
     return (

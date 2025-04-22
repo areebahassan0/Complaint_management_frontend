@@ -15,7 +15,17 @@ const getFullUrl = (endpoint) => `${BASE_URL}${endpoint}`;
 // Wrapper functions
 export const POST = async (url, data = null, headers = {}) => {
     try {
-        const response = await api.post(getFullUrl(url), data, { headers });
+        const response = await api.post(
+            getFullUrl(url),
+            data,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...headers,
+                },
+                withCredentials: true,  // sends session cookies (same as fetch's `credentials: 'include'`)
+            }
+        );
         return response?.data;
     } catch (error) {
         console.error('Error in POST request:', error.response?.data || error);
