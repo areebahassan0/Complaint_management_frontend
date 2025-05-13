@@ -17,6 +17,7 @@ import OTPVerificationPage from './views/Auth/OTPVerification';
 import ChangePassword from './views/Auth/ChangePassword';
 import HomePage from './views/Home/HomePage'
 import BillingDashboardPage from './views/Dashboard/BillingDashboardPage'
+import PayYourBill from './views/Billing/PayBill/PayYourBill';
 function App() {
     return (
         <Router>
@@ -30,6 +31,7 @@ function App() {
                 <Route path="/complaints-history" element={<DashboardLayout><HistoryTable /></DashboardLayout>} />
                 <Route path="/track-complaints" element={<DashboardLayout><TrackComplaints /></DashboardLayout>} />
                 <Route path="/lodge-complaint" element={<DashboardLayout><LodgeComplaint /></DashboardLayout>} />
+                <Route path="/pay-bill" element={<DashboardLayout><PayYourBill /></DashboardLayout>} />
                 {/* Auth Route */}
                 <Route path="/signin" element={<AuthLayoutRoute><Login /></AuthLayoutRoute>} />
                 <Route path="/signup" element={<AuthLayoutRoute><Signup /></AuthLayoutRoute>} />

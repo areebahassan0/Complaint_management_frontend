@@ -22,6 +22,7 @@ html, body {
   padding: 0;
   width: 100%;
   overflow-y: auto;
+  background: linear-gradient(135deg, #1B1464 0%, #6C5CE7 100%);
 }
 
 /* Header styles */
@@ -30,88 +31,89 @@ html, body {
   top: 0;
   left: 0;
   width: 100%;
+  min-height: 70px;
+  background: linear-gradient(90deg, #1B1464 0%, #6C5CE7 100%);
   display: flex;
-  justify-content: space-between; /* Adjusts spacing between children */
   align-items: center;
-  height: 13%;
-  background-color: #24023d;
-  padding: 0 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
+  padding: 0 40px;
+  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.10);
   z-index: 1000;
 }
 
-
-.global-header__menu {
-  background: none;
-  border: none;
-  font-size: 1.4rem;
-  cursor: pointer;
-  outline: none;
-  padding: 10px 20px; /* Elongates the button */
-  transition: all 0.3s ease;
-  color: white;
-}
-
-.global-header__menu:hover {
-  border: 3px solid rgb(220, 83, 220);
-  border-radius: 3px;
-}.global-header__back {
-  position: fixed; /* Fixed to the viewport, outside the header */
-  top: 10px; /* Slightly below the top of the viewport */
-  left: 20px; /* Adjust to align with the menu button's position */
-  background: none;
-  border: none;
-  font-size: 1.4rem;
-  cursor: pointer;
-  outline: none;
-  padding: 10px 20px; /* Consistent padding with the menu button */
-  transition: all 0.3s ease;
-  color: white;
-  z-index: 1500; /* Ensure it's above other elements */
-}
-
-.global-header__back:hover {
-  border: 3px solid rgb(220, 83, 220);
-  border-radius: 3px;
-}
-
-
 .global-header__logo {
-  flex-grow: 1;
-  text-align: center;
-  font-size: 1.9rem;
+  font-size: 2rem;
   font-weight: bold;
-  color: white;
+  color: #fff;
+  letter-spacing: 2px;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.global-header__nav {
+  display: flex;
+  gap: 36px;
+  flex: 1;
+  justify-content: center;
+}
+
+.global-header__nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  letter-spacing: 1px;
+}
+.global-header__nav-link:hover,
+.global-header__nav-link.active {
+  background: rgba(255,255,255,0.13);
+  color: #A29BFE;
+  transform: translateY(-2px) scale(1.05);
 }
 
 .global-header__account {
   display: flex;
   align-items: center;
-  font-size: 1.2rem;
-  font-weight: normal;
-  color: white;
-  gap: 8px; /* Adds space between the icon and text */
-  margin-right: 15px; /* Slightly moves the account to the left */
+  font-size: 1.1rem;
+  color: #fff;
+  gap: 8px;
   cursor: pointer;
-  padding: 10px 15px; /* Makes the hover area larger */
-  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+.global-header__account:hover {
+  background: rgba(255,255,255,0.13);
+  color: #A29BFE;
 }
 
 .global-header__account-icon {
-  width: 24px; /* Adjust size */
-  height: 24px; /* Adjust size */
-  fill: azure; /* Matches the SVG fill color */
+  width: 24px;
+  height: 24px;
+  fill: azure;
 }
 
-.global-header__account:hover {
-  border: 3px solid rgb(220, 83, 220);
-  border-radius: 3px;
+@media (max-width: 900px) {
+  .global-header {
+    padding: 0 10px;
+  }
+  .global-header__nav {
+    gap: 18px;
+  }
+  .global-header__logo {
+    font-size: 1.3rem;
+  }
 }
-
 
 /* Add space below the fixed header */
 .content {
-  margin-top: 13%; /* Matches the header height */
+  /* margin-top: 13%; */
 }
 /* Sidebar Styles */
 .sidebar {
@@ -194,7 +196,7 @@ html, body {
 body {
   margin: 0;
   padding: 0;
-  background-color: #14014d; /* Dark blue */
+  background: linear-gradient(135deg, #1B1464 0%, #6C5CE7 100%);
   color: rgb(240, 255, 255); /* Light text color */
   font-family: Arial, sans-serif;
 }

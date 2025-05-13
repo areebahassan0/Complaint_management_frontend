@@ -44,14 +44,14 @@ const BillingDashboardPage = () => {
     }
   };
 
-  // Update billing method on click
+  
   const handleChangeMethod = async (method) => {
     const data = {
-        billing_type: labelToValue[method]
-      };
-      console.log(method)    // const payload = { billing_type: method };
+      billing_type: labelToValue[method]
+    };
+    console.log(method);
     const result = await updateMethod(data);
-
+  
     if (result.status) {
       alert(`Billing method updated to ${method}!`);
       await fetchMethod();  // Refresh to update the Default badge
@@ -59,13 +59,14 @@ const BillingDashboardPage = () => {
       alert('Failed to update billing method.');
     }
   };
+  
 
   // Construct dropdown options
   const generateOptions = () => {
     return [
       { label: 'Pay Your Bill', path: '/pay-bill' },
       {
-        label: `Change Mode of Payment`,
+        label: 'Change Mode of Payment',
         submenu: [
           { 
             label: createLabel('Yearly', currentMethod === 'Yearly'),
@@ -109,5 +110,4 @@ const BillingDashboardPage = () => {
     />
   );
 };
-
 export default BillingDashboardPage;
