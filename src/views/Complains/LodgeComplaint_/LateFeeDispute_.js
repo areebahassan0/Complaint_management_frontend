@@ -126,7 +126,7 @@ const LateFeeDispute = ({ subType }) => {
         )}
       </div>
 
-      <button type="submit" className="submit-button">
+      <button type="submit" className="homepage-button">
         Submit Complaint
       </button>
     </form>

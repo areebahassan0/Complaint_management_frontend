@@ -115,7 +115,7 @@ const MeterIssue = () => {
         {attachedFile && <p>Attached File: {attachedFile.name}</p>}
       </div>
 
-      <button type="submit" className="submit-button">
+      <button type="submit" className="homepage-button">
         Submit Complaint
       </button>
     </form>

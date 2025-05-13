@@ -12,13 +12,11 @@ const ModuleDashboard = ({ title, options }) => {
     return (
       <DashboardLayout>
         <div className="dashboard-content">
-          <h2 className="custom-text">{title}</h2>
-  
           <div className="button-container">
             {options.map((option, index) => (
               <div key={index} className="dropdown-wrapper">
                 <button
-                  className="button-74"
+                  className="homepage-button"
                   role="button"
                   onClick={option.onClick ? option.onClick : () => handleNavigation(option.path)}
 

@@ -81,126 +81,129 @@ const DuplicateBill = () => {
   // };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Duplicate Bill Complaint Form</h2>
-      
-      <h3 className="small-slim-heading">Duplicate bills or repeated arrears, such as two bills for the same month or a previous balance appearing twice</h3>
-      {/* B1 Date of Occurrence */}
-      <div className="form-group">
-        <label htmlFor="b1Date">Bill 1 Date of Occurrence</label>
-        <input
-          type="date"
-          id="b1Date"
-          value={b1Date}
-          onChange={(e) => setb1Date(e.target.value)}
-          required
-        />
-      </div>
+    <div className="homepage-section">
+      <div className="homepage-card">
+        <form onSubmit={handleSubmit}>
+          <h2 className="homepage-title">Duplicate Bill Complaint Form</h2>
+          <h3 className="small-slim-heading">Duplicate bills or repeated arrears, such as two bills for the same month or a previous balance appearing twice</h3>
+          {/* B1 Date of Occurrence */}
+          <div className="form-group">
+            <label htmlFor="b1Date">Bill 1 Date of Occurrence</label>
+            <input
+              type="date"
+              id="b1Date"
+              value={b1Date}
+              onChange={(e) => setb1Date(e.target.value)}
+              required
+            />
+          </div>
 
-      {/* B2 Date of Occurrence */}
-      <div className="form-group">
-        <label htmlFor="b2Date">Bill 2 Date of Occurrence</label>
-        <input
-          type="date"
-          id="b2Date"
-          value={b2Date}
-          onChange={(e) => setb2Date(e.target.value)}
-          required
-        />
-      </div>
+          {/* B2 Date of Occurrence */}
+          <div className="form-group">
+            <label htmlFor="b2Date">Bill 2 Date of Occurrence</label>
+            <input
+              type="date"
+              id="b2Date"
+              value={b2Date}
+              onChange={(e) => setb2Date(e.target.value)}
+              required
+            />
+          </div>
 
-      {/* Billing Period */}
-      <div className="form-group">
-        <label htmlFor="b1billingPeriod">Bill 1 Billing Period</label>
-        <input
-          type="month"
-          id="b1billingPeriod"
-          value={b1billingPeriod}
-          onChange={(e) => setb1BillingPeriod(e.target.value)}
-          required
-        />
-      </div>
+          {/* Billing Period */}
+          <div className="form-group">
+            <label htmlFor="b1billingPeriod">Bill 1 Billing Period</label>
+            <input
+              type="month"
+              id="b1billingPeriod"
+              value={b1billingPeriod}
+              onChange={(e) => setb1BillingPeriod(e.target.value)}
+              required
+            />
+          </div>
 
-      {/* Billing Period */}
-      <div className="form-group">
-        <label htmlFor="b2billingPeriod">Bill 2 Billing Period</label>
-        <input
-          type="month"
-          id="b2billingPeriod"
-          value={b2billingPeriod}
-          onChange={(e) => setb2BillingPeriod(e.target.value)}
-          required
-        />
-      </div>
+          {/* Billing Period */}
+          <div className="form-group">
+            <label htmlFor="b2billingPeriod">Bill 2 Billing Period</label>
+            <input
+              type="month"
+              id="b2billingPeriod"
+              value={b2billingPeriod}
+              onChange={(e) => setb2BillingPeriod(e.target.value)}
+              required
+            />
+          </div>
 
-      {/* Total Billed Amount */}
-      <div className="form-group">
-        <label htmlFor="b1BilledAmount">Bill 1 Billed Amount</label>
-        <input
-          type="number"
-          id="b1BilledAmount"
-          value={b1BilledAmount}
-          onChange={(e) => setb1BilledAmount(e.target.value)}
-          placeholder="Enter total billed amount"
-          required
-        />
-      </div>
+          {/* Total Billed Amount */}
+          <div className="form-group">
+            <label htmlFor="b1BilledAmount">Bill 1 Billed Amount</label>
+            <input
+              type="number"
+              id="b1BilledAmount"
+              value={b1BilledAmount}
+              onChange={(e) => setb1BilledAmount(e.target.value)}
+              placeholder="Enter total billed amount"
+              required
+            />
+          </div>
 
-      <div className="form-group">
-        <label htmlFor="b2BilledAmount">Bill 2 Billed Amount</label>
-        <input
-          type="number"
-          id="b2BilledAmount"
-          value={b2BilledAmount}
-          onChange={(e) => setb2BilledAmount(e.target.value)}
-          placeholder="Enter total billed amount"
-          required
-        />
-      </div>
+          <div className="form-group">
+            <label htmlFor="b2BilledAmount">Bill 2 Billed Amount</label>
+            <input
+              type="number"
+              id="b2BilledAmount"
+              value={b2BilledAmount}
+              onChange={(e) => setb2BilledAmount(e.target.value)}
+              placeholder="Enter total billed amount"
+              required
+            />
+          </div>
 
-      {/* Description */}
-      <div className="form-group">
-        <label htmlFor="description">Description (Optional)</label>
-        <textarea
-          id="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Provide additional details about the charges..."
-          rows="4"
-        />
-      </div>
+          {/* Description */}
+          <div className="form-group">
+            <label htmlFor="description">Description (Optional)</label>
+            <textarea
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Provide additional details about the charges..."
+              rows="4"
+            />
+          </div>
 
-      {/* Attach Image */}
-      <div className="form-group">
-        <label htmlFor="b1attachedFile">Attach Bill 1 Submission Picture</label>
-        <input
-          type="file"
-          id="b1attachedFile"
-          accept="image/*"
-          onChange={(e) => handleFileUpload(e, setb1AttachedFile)}
-          required
-        />
-        {b1attachedFile && <p>Attached File: {b1attachedFile.name}</p>}
-      </div>
+          {/* Attach Image */}
+          <div className="form-group">
+            <label htmlFor="b1attachedFile">Attach Bill 1 Submission Picture</label>
+            <input
+              type="file"
+              id="b1attachedFile"
+              accept="image/*"
+              onChange={(e) => handleFileUpload(e, setb1AttachedFile)}
+              required
+            />
+            {b1attachedFile && <p>Attached File: {b1attachedFile.name}</p>}
+          </div>
 
-      {/* Attach Image */}
-      <div className="form-group">
-        <label htmlFor="b2attachedFile">Attach Bill 2 Submission Picture</label>
-        <input
-          type="file"
-          id="b2attachedFile"
-          accept="image/*"
-          onChange={(e) => handleFileUpload(e, setb2AttachedFile)}
-          required
-        />
-        {b2attachedFile && <p>Attached File: {b2attachedFile.name}</p>}
-      </div>
+          {/* Attach Image */}
+          <div className="form-group">
+            <label htmlFor="b2attachedFile">Attach Bill 2 Submission Picture</label>
+            <input
+              type="file"
+              id="b2attachedFile"
+              accept="image/*"
+              onChange={(e) => handleFileUpload(e, setb2AttachedFile)}
+              required
+            />
+            {b2attachedFile && <p>Attached File: {b2attachedFile.name}</p>}
+          </div>
 
-      {/* Submit Button */}
-      <button type="submit" className="submit-button">
-        Submit Complaint
-      </button>
-    </form>
+          {/* Submit Button */}
+          <button type="submit" className="homepage-button">
+            Submit Complaint
+          </button>
+        </form>
+      </div>
+    </div>
   );
 };
 

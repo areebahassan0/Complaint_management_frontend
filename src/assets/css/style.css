@@ -3,17 +3,17 @@
   color: rgb(96, 240, 248); /* Text color */
   display: block; /* Ensures block-level element */
   font-family: 'Chromatophore', Helvetica, Arial, sans-serif; /* Font family */
-  font-size: 50px; /* Font size */
+  font-size: 2rem; /* Font size */
   font-style: normal; /* Regular font style */
-  font-weight: 400; /* Font weight */
-  height: 150px; /* Element height */
-  letter-spacing: -2px; /* Letter spacing */
-  line-height: 75px; /* Line height */
+  font-weight: 600; /* Font weight */
+  /* height: 150px; */
+  letter-spacing: -1px; /* Letter spacing */
+  line-height: 1.2; /* Line height */
   margin-top: 24px; /* Adjust space above the title */
-  margin-left: 20px; /* Align with "Menu" button */
+  margin-left: 0; /* Align with "Menu" button */
   margin-right: auto; /* Prevent stretching too far to the right */
   text-align: left; /* Align text to the left */
-  max-width: 60%; /* Restrict width from the right-hand side */
+  max-width: 100%; /* Restrict width from the right-hand side */
   -webkit-font-smoothing: antialiased; /* Enhance rendering */
 }
 
@@ -22,7 +22,15 @@ html, body {
   padding: 0;
   width: 100%;
   overflow-y: auto;
-  background: linear-gradient(135deg, #1B1464 0%, #6C5CE7 100%);
+  background: #232b7a;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #232b7a;
+  color: rgb(240, 255, 255);
+  font-family: Arial, sans-serif;
 }
 
 /* Header styles */
@@ -32,7 +40,7 @@ html, body {
   left: 0;
   width: 100%;
   min-height: 70px;
-  background: linear-gradient(90deg, #1B1464 0%, #6C5CE7 100%);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -172,9 +180,13 @@ html, body {
 
 /* Main Content Styles */
 .dashboard-content {
-  margin-top: 13%; /* Accounts for the fixed header height */
-  padding: 20px;
-  transition: filter 0.3s ease;
+  /* background: #232b7a; */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px; /* Space for header */
+  padding-bottom: 20px;
 }
 
 .dashboard-content.blur {

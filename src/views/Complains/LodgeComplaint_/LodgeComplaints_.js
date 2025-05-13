@@ -57,12 +57,13 @@ const ComplaintForm = () => {
       : [];
 
   return (
-    <div>
-      <h1 className="form-heading"> Complaint Form</h1>
+    <div className="homepage-section">
+      <div className="homepage-card">
+        <h1 className="homepage-title"> Complaint Form</h1>
 
-      {/* Brand Selection */}
-      <div>
-      <div className="options-container">
+        {/* Brand Selection */}
+        <div>
+        <div className="options-container">
   {brands.map((brand) => (
     <button
       key={brand}
@@ -102,7 +103,7 @@ const ComplaintForm = () => {
 
 </div>
 
-    
+        
 
 {selectedComplaintType === "Faulty Meter" && selectedBrand === "Billing Complaints" && (
   <div className="options-container">
@@ -177,46 +178,47 @@ const ComplaintForm = () => {
 
 
 
-      {/* Render Complaint Forms Inline */}
-      {selectedBrand === "Others" && <Others/>}
-      {selectedComplaintType === "Report an Outage" && selectedBrand === "Load Shedding" && <ReportOutageForm />}
-      {selectedComplaintType === "Frequent Load Shedding" && selectedBrand === "Load Shedding" && <FrequentLoadShedding />}
-      {selectedComplaintType === "Incorrect Load Shedding Schedule" && selectedBrand === "Load Shedding" && <IncorrectLoadShedding />}
-      {selectedComplaintType === "Voltage complains" && selectedBrand === "Load Shedding" && <VoltageComplaint />}
-      {selectedComplaintType === "Phase complains" && selectedBrand === "Load Shedding" && <PhaseComplaint />}
-      {selectedComplaintType === "Incorrect Bill Amount" && selectedBrand === "Billing Complaints" && <IncorrectBillAmount />}
-      {selectedComplaintType === "Unexplained Charges" && selectedBrand === "Billing Complaints" && <UnexplainedCharges />}
-      {selectedComplaintType === "Unresolved Arrears" && selectedBrand === "Billing Complaints" && <UnexplainedArears />}
-      {selectedComplaintType === "Duplicate Bills" && selectedBrand === "Billing Complaints" && <DuplicateBill />}
-      {selectedComplaintType === "Non-receipt of Bill" && selectedBrand === "Billing Complaints" && <NonReceiptOfBill />}
+        {/* Render Complaint Forms Inline */}
+        {selectedBrand === "Others" && <Others/>}
+        {selectedComplaintType === "Report an Outage" && selectedBrand === "Load Shedding" && <ReportOutageForm />}
+        {selectedComplaintType === "Frequent Load Shedding" && selectedBrand === "Load Shedding" && <FrequentLoadShedding />}
+        {selectedComplaintType === "Incorrect Load Shedding Schedule" && selectedBrand === "Load Shedding" && <IncorrectLoadShedding />}
+        {selectedComplaintType === "Voltage complains" && selectedBrand === "Load Shedding" && <VoltageComplaint />}
+        {selectedComplaintType === "Phase complains" && selectedBrand === "Load Shedding" && <PhaseComplaint />}
+        {selectedComplaintType === "Incorrect Bill Amount" && selectedBrand === "Billing Complaints" && <IncorrectBillAmount />}
+        {selectedComplaintType === "Unexplained Charges" && selectedBrand === "Billing Complaints" && <UnexplainedCharges />}
+        {selectedComplaintType === "Unresolved Arrears" && selectedBrand === "Billing Complaints" && <UnexplainedArears />}
+        {selectedComplaintType === "Duplicate Bills" && selectedBrand === "Billing Complaints" && <DuplicateBill />}
+        {selectedComplaintType === "Non-receipt of Bill" && selectedBrand === "Billing Complaints" && <NonReceiptOfBill />}
 
-      {/* Render Sub-Forms for Faulty Meter */}
-      {faultyMeterSubType === "Incorrect Reading" &&
-        selectedComplaintType === "Faulty Meter" &&
-        selectedBrand === "Billing Complaints" && <IncorrectReading />}
-      {faultyMeterSubType === "Meter Issue" &&
-        selectedComplaintType === "Faulty Meter" &&
-        selectedBrand === "Billing Complaints" && <MeterIssue />}
-      
-      {/* Render Sub-Forms for  Payment Not Reflected*/}
-      {paymentNotReflectedType === "Online Payment Not Reflected" &&
-        selectedComplaintType === "Payment Not Reflected" &&
-        selectedBrand === "Billing Complaints" && <OnlinePaymentNotReflected />}
-      {paymentNotReflectedType === "Bank Transfer Not Reflected" &&
-        selectedComplaintType === "Payment Not Reflected" &&
-        selectedBrand === "Billing Complaints" && <BankTransferNotReflected />}
-      {paymentNotReflectedType === "Physical Payment Center Not Recorded" &&
-        selectedComplaintType === "Payment Not Reflected" &&
-        selectedBrand === "Billing Complaints" && <PhysicalPaymentCenterNotRecorded />}
+        {/* Render Sub-Forms for Faulty Meter */}
+        {faultyMeterSubType === "Incorrect Reading" &&
+          selectedComplaintType === "Faulty Meter" &&
+          selectedBrand === "Billing Complaints" && <IncorrectReading />}
+        {faultyMeterSubType === "Meter Issue" &&
+          selectedComplaintType === "Faulty Meter" &&
+          selectedBrand === "Billing Complaints" && <MeterIssue />}
+        
+        {/* Render Sub-Forms for  Payment Not Reflected*/}
+        {paymentNotReflectedType === "Online Payment Not Reflected" &&
+          selectedComplaintType === "Payment Not Reflected" &&
+          selectedBrand === "Billing Complaints" && <OnlinePaymentNotReflected />}
+        {paymentNotReflectedType === "Bank Transfer Not Reflected" &&
+          selectedComplaintType === "Payment Not Reflected" &&
+          selectedBrand === "Billing Complaints" && <BankTransferNotReflected />}
+        {paymentNotReflectedType === "Physical Payment Center Not Recorded" &&
+          selectedComplaintType === "Payment Not Reflected" &&
+          selectedBrand === "Billing Complaints" && <PhysicalPaymentCenterNotRecorded />}
 
-      {/* Render Sub-Forms for Late Payment Fees */}
-      {latePaymentFeesType === "Paid on Time, Charged Late" &&
-        selectedComplaintType === "Late Payment Fees" &&
-        selectedBrand === "Billing Complaints" && <PaidOnTimeChargedLate/>}
-      {latePaymentFeesType === "Late Fee Dispute" &&
-        selectedComplaintType === "Late Payment Fees" &&
-        selectedBrand === "Billing Complaints" && <LateFeeDispute/>}
+        {/* Render Sub-Forms for Late Payment Fees */}
+        {latePaymentFeesType === "Paid on Time, Charged Late" &&
+          selectedComplaintType === "Late Payment Fees" &&
+          selectedBrand === "Billing Complaints" && <PaidOnTimeChargedLate/>}
+        {latePaymentFeesType === "Late Fee Dispute" &&
+          selectedComplaintType === "Late Payment Fees" &&
+          selectedBrand === "Billing Complaints" && <LateFeeDispute/>}
 
+      </div>
     </div>
   );
 };

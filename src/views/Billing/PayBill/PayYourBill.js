@@ -80,14 +80,7 @@ const PayYourBill = () => {
       cell: (row) => (
         <button
           onClick={() => downloadPDF(row)}
-          style={{
-            backgroundColor: '#6610f2',
-            color: '#fff',
-            padding: '7px 12px',
-            border: 'none',
-            borderRadius: '8px',
-            cursor: 'pointer'
-          }}
+          className="homepage-button"
         >
           Print
         </button>
@@ -96,27 +89,17 @@ const PayYourBill = () => {
   ];
 
   return (
-    <div>
-      {/* Header */}
-      <div
-        style={{
-          background: 'linear-gradient(45deg, #eecaca, #e3d0d000)',
-          padding: '20px',
-          color: 'black',
-          marginBottom: '20px'
-        }}
-      >
-        <h1 style={{ textAlign: 'center', marginBottom: '10px' }}>Your Billing History</h1>
-      </div>
-
-      {/* Table */}
-      <div style={{ padding: '20px', backgroundColor: '#f8f9fa' }}>
-        <DataTable
-          columns={columns}
-          data={bills}
-          highlightOnHover
-          pagination
-        />
+    <div className="homepage-section">
+      <div className="homepage-card">
+        <h1 className="homepage-title" style={{ textAlign: 'center', marginBottom: '10px' }}>Your Billing History</h1>
+        <div style={{ padding: '20px', backgroundColor: '#f8f9fa' }}>
+          <DataTable
+            columns={columns}
+            data={bills}
+            highlightOnHover
+            pagination
+          />
+        </div>
       </div>
     </div>
   );
