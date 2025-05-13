@@ -101,4 +101,11 @@
   padding-top: 100px; /* Space for header, adjust as needed */
   padding-bottom: 20px;
 }
+
+.dashboard-body-container {
+  min-height: 100vh;
+  background: #232b7a;
+  overflow-x: hidden;
+  font-family: 'Poppins', 'Inter', Arial, sans-serif;
+}
   

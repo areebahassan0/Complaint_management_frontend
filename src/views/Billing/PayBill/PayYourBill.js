@@ -89,7 +89,7 @@ const PayYourBill = () => {
   ];
 
   return (
-    <div className="homepage-section">
+    <div>
       <div className="homepage-card">
         <h1 className="homepage-title" style={{ textAlign: 'center', marginBottom: '10px' }}>Your Billing History</h1>
         <div style={{ padding: '20px', backgroundColor: '#f8f9fa' }}>

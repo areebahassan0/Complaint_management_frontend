@@ -14,9 +14,9 @@ import MeterIssue from "./MeterIssue_"; // Placeholder for Meter Issue form
 import PhysicalPaymentCenterNotRecorded from "./PhysicalPaymentCenterNotRecorded_";
 import BankTransferNotReflected from "./BankTransferNotReflected_";
 import OnlinePaymentNotReflected from "./OnlinePaymentNotReflected_";
-import LateFeeDispute from "./LateFeeDispute_";
+import LateFeeDispute from "../LodgeComplaint_/LateFeeDispute_";
 import PaidOnTimeChargedLate from "./PaidOnTimeChargedLate_";
-import Others from "./Others_";
+import Others from "../LodgeComplaint_/Others_";
 import "../../../assets/css/ComplaintActions.css";
 
 const ComplaintForm = () => {
@@ -57,126 +57,118 @@ const ComplaintForm = () => {
       : [];
 
   return (
-    <div className="homepage-section">
+    <div>
       <div className="homepage-card">
         <h1 className="homepage-title"> Complaint Form</h1>
 
         {/* Brand Selection */}
-        <div>
         <div className="options-container">
-  {brands.map((brand) => (
-    <button
-      key={brand}
-      className={`option-button ${selectedBrand === brand ? "active" : ""}`} // Add "active" for the selected button
-      onClick={() => {
-        setSelectedBrand(brand);
-        setSelectedComplaintType(null);
-        setFaultyMeterSubType(null);
-        setPaymentNotReflectedType(null);
-        setLatePaymentFeesType(null);
-      }}
-    >
-      {brand}
-    </button>
-  ))}
-</div>
+          {brands.map((brand) => (
+            <button
+              key={brand}
+              className={`option-button ${selectedBrand === brand ? "active" : ""}`}
+              onClick={() => {
+                setSelectedBrand(brand);
+                setSelectedComplaintType(null);
+                setFaultyMeterSubType(null);
+                setPaymentNotReflectedType(null);
+                setLatePaymentFeesType(null);
+              }}
+            >
+              {brand}
+            </button>
+          ))}
+        </div>
 
+        {selectedComplaintType === "Faulty Meter" && selectedBrand === "Billing Complaints" && (
+          <div className="options-container">
+            <button
+              className={`option-button ${
+                faultyMeterSubType === "Incorrect Reading" ? "active" : ""
+              }`}
+              onClick={() => setFaultyMeterSubType("Incorrect Reading")}
+            >
+              Incorrect Reading
+            </button>
+            <button
+              className={`option-button ${
+                faultyMeterSubType === "Meter Issue" ? "active" : ""
+              }`}
+              onClick={() => setFaultyMeterSubType("Meter Issue")}
+            >
+              Meter Issue
+            </button>
+          </div>
+        )}
 
-<div className="sub-options">
-  {complaintTypes.map(({ label, submenu }) => (
-    <button
-      key={submenu}
-      className={`sub-option-button ${
-        selectedComplaintType === label ? "active" : ""
-      }`} // Add "active" for the selected sub-option
-      onClick={() => {
-        setSelectedComplaintType(label);
-        setFaultyMeterSubType(null);
-        setPaymentNotReflectedType(null);
-        setLatePaymentFeesType(null);
-      }}
-    >
-      {label}
-    </button>
-  ))}
-</div>
+        {selectedComplaintType === "Payment Not Reflected" && selectedBrand === "Billing Complaints" && (
+          <div className="options-container">
+            <button
+              className={`option-button ${
+                paymentNotReflectedType === "Online Payment Not Reflected" ? "active" : ""
+              }`}
+              onClick={() => setPaymentNotReflectedType("Online Payment Not Reflected")}
+            >
+              Online Payment Not Reflected
+            </button>
+            <button
+              className={`option-button ${
+                paymentNotReflectedType === "Bank Transfer Not Reflected" ? "active" : ""
+              }`}
+              onClick={() => setPaymentNotReflectedType("Bank Transfer Not Reflected")}
+            >
+              Bank Transfer Not Reflected
+            </button>
+            <button
+              className={`option-button ${
+                paymentNotReflectedType === "Physical Payment Center Not Recorded" ? "active" : ""
+              }`}
+              onClick={() => setPaymentNotReflectedType("Physical Payment Center Not Recorded")}
+            >
+              Physical Payment Center Not Recorded
+            </button>
+          </div>
+        )}
 
-</div>
+        {selectedComplaintType === "Late Payment Fees" && selectedBrand === "Billing Complaints" && (
+          <div className="options-container">
+            <button
+              className={`option-button ${
+                latePaymentFeesType === "Paid on Time, Charged Late" ? "active" : ""
+              }`}
+              onClick={() => setLatePaymentFeesType("Paid on Time, Charged Late")}
+            >
+              Paid on Time, Charged Late
+            </button>
+            <button
+              className={`option-button ${
+                latePaymentFeesType === "Late Fee Dispute" ? "active" : ""
+              }`}
+              onClick={() => setLatePaymentFeesType("Late Fee Dispute")}
+            >
+              Late Fee Dispute
+            </button>
+          </div>
+        )}
 
-        
-
-{selectedComplaintType === "Faulty Meter" && selectedBrand === "Billing Complaints" && (
-  <div className="options-container">
-    <button
-      className={`option-button ${
-        faultyMeterSubType === "Incorrect Reading" ? "active" : ""
-      }`}
-      onClick={() => setFaultyMeterSubType("Incorrect Reading")}
-    >
-      Incorrect Reading
-    </button>
-    <button
-      className={`option-button ${
-        faultyMeterSubType === "Meter Issue" ? "active" : ""
-      }`}
-      onClick={() => setFaultyMeterSubType("Meter Issue")}
-    >
-      Meter Issue
-    </button>
-  </div>
-)}
-
-{selectedComplaintType === "Payment Not Reflected" && selectedBrand === "Billing Complaints" && (
-  <div className="options-container">
-    <button
-      className={`option-button ${
-        paymentNotReflectedType === "Online Payment Not Reflected" ? "active" : ""
-      }`}
-      onClick={() => setPaymentNotReflectedType("Online Payment Not Reflected")}
-    >
-      Online Payment Not Reflected
-    </button>
-    <button
-      className={`option-button ${
-        paymentNotReflectedType === "Bank Transfer Not Reflected" ? "active" : ""
-      }`}
-      onClick={() => setPaymentNotReflectedType("Bank Transfer Not Reflected")}
-    >
-      Bank Transfer Not Reflected
-    </button>
-    <button
-      className={`option-button ${
-        paymentNotReflectedType === "Physical Payment Center Not Recorded" ? "active" : ""
-      }`}
-      onClick={() => setPaymentNotReflectedType("Physical Payment Center Not Recorded")}
-    >
-      Physical Payment Center Not Recorded
-    </button>
-  </div>
-)}
-
-{selectedComplaintType === "Late Payment Fees" && selectedBrand === "Billing Complaints" && (
-  <div className="options-container">
-    <button
-      className={`option-button ${
-        latePaymentFeesType === "Paid on Time, Charged Late" ? "active" : ""
-      }`}
-      onClick={() => setLatePaymentFeesType("Paid on Time, Charged Late")}
-    >
-      Paid on Time, Charged Late
-    </button>
-    <button
-      className={`option-button ${
-        latePaymentFeesType === "Late Fee Dispute" ? "active" : ""
-      }`}
-      onClick={() => setLatePaymentFeesType("Late Fee Dispute")}
-    >
-      Late Fee Dispute
-    </button>
-  </div>
-)}
-
-
+        <div className="sub-options">
+          {complaintTypes.map(({ label, submenu }) => (
+            <button
+              key={submenu}
+              className={`sub-option-button ${
+                selectedComplaintType === label ? "active" : ""
+              }`}
+              onClick={() => {
+                setSelectedComplaintType(label);
+                setFaultyMeterSubType(null);
+                setPaymentNotReflectedType(null);
+                setLatePaymentFeesType(null);
+              }}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
 
         {/* Render Complaint Forms Inline */}
         {selectedBrand === "Others" && <Others/>}
