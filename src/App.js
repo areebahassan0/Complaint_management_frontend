@@ -18,6 +18,9 @@ import ChangePassword from './views/Auth/ChangePassword';
 import HomePage from './views/Home/HomePage'
 import BillingDashboardPage from './views/Dashboard/BillingDashboardPage'
 import PayYourBill from './views/Billing/PayBill/PayYourBill';
+import ChangeMethod from './views/Billing/ChangeMethod/ChangeMethod';
+import ConsumptionDashboard from './views/Consumption/ConsumptionDashboard';
+
 function App() {
     return (
         <Router>
@@ -32,6 +35,8 @@ function App() {
                 <Route path="/track-complaints" element={<DashboardLayout><TrackComplaints /></DashboardLayout>} />
                 <Route path="/lodge-complaint" element={<DashboardLayout><LodgeComplaint /></DashboardLayout>} />
                 <Route path="/pay-bill" element={<DashboardLayout><PayYourBill /></DashboardLayout>} />
+                <Route path="/change-billing-method" element={<DashboardLayout><ChangeMethod /></DashboardLayout>} />
+                <Route path="/consumption" element={<DashboardLayout><ConsumptionDashboard /></DashboardLayout>} />
                 {/* Auth Route */}
                 <Route path="/signin" element={<AuthLayoutRoute><Login /></AuthLayoutRoute>} />
                 <Route path="/signup" element={<AuthLayoutRoute><Signup /></AuthLayoutRoute>} />

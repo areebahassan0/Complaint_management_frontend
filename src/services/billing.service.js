@@ -20,18 +20,53 @@ export const getBillingMethod = async () => {
         return { status: false, message: 'Failed to fetch method.' };
     }
 };
+
+export const getUnpaidBills = async () => {
+    const token = getAccessToken();
+    try {
+        const headers = {
+            Authorization: `Bearer ${token}`,
+        };
+        
+        const response = await GET(apiUrl.get_unpaid_bills, null, headers);
+        return { status: true, data: response };
+    } catch (error) {
+        console.error('Error fetching unpaid bills:', error);
+        return { status: false, message: 'Failed to fetch unpaid bills.' };
+    }
+};
+
 export const updateMethod = async (data) => {
     const token = getAccessToken();
     try {
         const headers = {
             Authorization: `Bearer ${token}`,
         };
-        const response = await PATCH(apiUrl.update_method, data,headers);
+
+        // Validate data before sending
+        if (data.billing_type === 'PACKAGE' && !data.package_id) {
+            return { 
+                status: false, 
+                message: 'Package ID is required for package billing' 
+            };
+        }
+
+        if (data.billing_type === 'INSTALLMENT' && !data.frequency) {
+            return { 
+                status: false, 
+                message: 'Frequency is required for installment billing' 
+            };
+        }
+
+        const response = await PATCH(apiUrl.update_method, data, headers);
         return { status: true, data: response };
     }
     catch (error) {
         console.error('Error updating method:', error);
-        return { status: false, message: 'Failed to update method.' };
+        return { 
+            status: false, 
+            message: error.response?.data?.error || 'Failed to update method.' 
+        };
     }
 };
 export const getBillingHistory = async () => {
