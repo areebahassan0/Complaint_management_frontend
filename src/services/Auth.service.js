@@ -139,5 +139,5 @@ export const clearTokens = () => {
 // Logout function
 export const logout = () => {
     clearTokens();
-    window.location.href = '/login'; // Force redirect to login page
+    window.location.href = '/signin'; // Force redirect to login page
 };

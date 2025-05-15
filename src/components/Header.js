@@ -10,7 +10,7 @@ const Header = ({ hideMenu = false }) => {
         if (isAuth) {
             // Show a dropdown or handle account actions
         } else {
-            navigate("/login");
+            navigate("/signin");
         }
     };
 

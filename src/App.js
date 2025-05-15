@@ -44,7 +44,7 @@ function App() {
                 <Route path="/otp-verification" element={<AuthLayoutRoute><OTPVerificationPage /></AuthLayoutRoute>} />
                 <Route path="/change-password" element={<AuthLayoutRoute><ChangePassword /></AuthLayoutRoute>} />
                 {/* Redirect to Dashboard */}
-                <Route path="*" element={<Navigate to="/dashboard" />} />
+                <Route path="*" element={<Navigate to="/home" />} />
             </Routes>
         </Router>
     );
