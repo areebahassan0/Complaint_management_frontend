@@ -56,8 +56,9 @@ const OnlinePaymentNotReflected = ({ subType }) => {
   };
 
   return (
+    <div className="form-container">
     <form  onSubmit={handleSubmit}>
-      <h2>{subType} Online Payment  Complaint</h2>
+      <h2 className="homepage-title">{subType} Online Payment  Complaint</h2>
        
       <h3 className="small-slim-heading">Payment made online is not showing in the system</h3>
       {/* Payment Date */}
@@ -139,6 +140,7 @@ const OnlinePaymentNotReflected = ({ subType }) => {
         Submit Complaint
       </button>
     </form>
+    </div>
   );
 };
 

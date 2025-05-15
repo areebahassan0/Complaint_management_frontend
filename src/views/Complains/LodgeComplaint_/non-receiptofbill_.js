@@ -67,8 +67,9 @@ const NonReceiptOfBill = () => {
   // };
 
   return (
+    <div className="form-container">
     <form onSubmit={handleSubmit}>
-      <h2>Non-Receipt of Bill Complaint</h2>
+      <h2 className="homepage-title">Non-Receipt of Bill Complaint</h2>
 
       {/* Billing Period */}
       <div className="form-group">
@@ -141,10 +142,11 @@ const NonReceiptOfBill = () => {
         )}
       </div>
 
-      <button type="submit" className="homepage-button">
+      <button type="submit" className="submit-button">
         Submit Complaint
       </button>
     </form>
+    </div>
   );
 };
 

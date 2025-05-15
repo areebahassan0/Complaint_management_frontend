@@ -12,6 +12,7 @@ const ModuleDashboard = ({ title, options }) => {
     return (
       <DashboardLayout>
         <div className="dashboard-content">
+          <h1 className="dashboard-title">{title}</h1>
           <div className="button-container">
             {options.map((option, index) => (
               <div key={index} className="dropdown-wrapper">
@@ -19,7 +20,6 @@ const ModuleDashboard = ({ title, options }) => {
                   className="homepage-button"
                   role="button"
                   onClick={option.onClick ? option.onClick : () => handleNavigation(option.path)}
-
                 >
                   {option.label}
                 </button>
@@ -31,7 +31,6 @@ const ModuleDashboard = ({ title, options }) => {
                         <button
                           className="dropdown-item"
                           onClick={sub.onClick ? sub.onClick : () => handleNavigation(sub.path)}
-
                         >
                           {sub.label}
                         </button>

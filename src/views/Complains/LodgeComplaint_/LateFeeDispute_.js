@@ -55,8 +55,9 @@ const LateFeeDispute = ({ subType }) => {
    
 
   return (
+    <div className="form-container">
     <form onSubmit={handleSubmit}>
-      <h2>{subType} Late Fee Dispute Complaint</h2>
+      <h2 className="homepage-title">{subType} Late Fee Dispute Complaint</h2>
       
       <h3 className="small-slim-heading">Users dispute the amount of the late fee</h3>
       {/* Billing Period */}
@@ -126,10 +127,11 @@ const LateFeeDispute = ({ subType }) => {
         )}
       </div>
 
-      <button type="submit" className="homepage-button">
+      <button type="submit" className="submit-button">
         Submit Complaint
       </button>
     </form>
+    </div>
   );
 };
 

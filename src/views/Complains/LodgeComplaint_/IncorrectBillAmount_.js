@@ -59,8 +59,9 @@ const IncorrectBillAmount = () => {
     
 
   return (
+    <div className="form-container">
     <form onSubmit={handleSubmit}>
-      <h2>Incorrect Bill Amount Complaint Form</h2>
+      <h2 className="homepage-title">Incorrect Bill Amount Complaint Form</h2>
       
       <h3 className="small-slim-heading">Billed amount being is overcharged, and undercharged.</h3>
       {/* Billing Period */}
@@ -150,10 +151,11 @@ const IncorrectBillAmount = () => {
         />
       </div>
 
-      <button type="submit" className="homepage-button">
+      <button type="submit" className="submit-button">
         Submit Complaint
       </button>
     </form>
+    </div>
   );
 };
 

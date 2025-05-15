@@ -44,8 +44,10 @@ const Others = () => {
   };
 
   return (
+    <div className="form-container">
     <form onSubmit={handleSubmit}>
-      <h2>Other Complaints</h2>
+      <h2 className="homepage-title">Other Complaints</h2>
+      
 
       {/* Description */}
       <div className="form-group">
@@ -70,10 +72,11 @@ const Others = () => {
         />
       </div>
 
-      <button type="submit" className="homepage-button">
+      <button type="submit" className="submit-button">
         Submit Complaint
       </button>
     </form>
+    </div>
   );
 };
 

@@ -22,13 +22,13 @@ html, body {
   padding: 0;
   width: 100%;
   overflow-y: auto;
-  background: #232b7a;
+  background:  #1B1464;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background: #232b7a;
+  background: #1B1464;
   color: rgb(240, 255, 255);
   font-family: Arial, sans-serif;
 }
@@ -81,7 +81,7 @@ body {
 .global-header__nav-link:hover,
 .global-header__nav-link.active {
   background: rgba(255,255,255,0.13);
-  color: #A29BFE;
+  color: #1B1464;
   transform: translateY(-2px) scale(1.05);
 }
 
@@ -98,7 +98,7 @@ body {
 }
 .global-header__account:hover {
   background: rgba(255,255,255,0.13);
-  color: #A29BFE;
+  color: #1B1464;
 }
 
 .global-header__account-icon {
@@ -204,11 +204,11 @@ body {
   backdrop-filter: blur(8px);
   z-index: 1400; /* Below the sidebar */
 }
-/* Body styles */
+
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #1B1464 0%, #6C5CE7 100%);
+  background: #1B1464;
   color: rgb(240, 255, 255); /* Light text color */
   font-family: Arial, sans-serif;
 }
