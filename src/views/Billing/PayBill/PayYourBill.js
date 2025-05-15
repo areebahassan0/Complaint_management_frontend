@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getUnpaidBills } from '../../../services/billing.service';
 import { Download, CreditCard } from 'lucide-react';
+import jsPDF from 'jspdf';
 
 const SimpleBillingPage = () => {
   const [unpaidBills, setUnpaidBills] = useState([]);
@@ -27,8 +28,18 @@ const SimpleBillingPage = () => {
   }, []);
 
   const downloadPDF = (bill) => {
-    console.log('Downloading bill:', bill.bill_id);
-    // Trigger download logic here
+    const doc = new jsPDF();
+
+    doc.setFontSize(18);
+    doc.text('Electricity Bill', 20, 20);
+
+    doc.setFontSize(12);
+    doc.text(`Bill ID: ${bill.bill_id}`, 20, 40);
+    doc.text(`Due Date: ${bill.due_date}`, 20, 50);
+    doc.text(`Amount: Rs. ${bill.bill_amount}`, 20, 60);
+    doc.text(`Arrears: Rs. ${bill.arrears}`, 20, 70);
+
+    doc.save(`Bill_${bill.bill_id}.pdf`);
   };
 
   const payBill = (bill) => {
