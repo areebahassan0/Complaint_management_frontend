@@ -9,6 +9,7 @@ const Header = ({ hideMenu = false }) => {
 
     const handleAccountClick = () => {
         if (isAuth) {
+            navigate("/signin");
             // Show a dropdown or handle account actions
         } else {
             navigate("/signin");
@@ -27,7 +28,7 @@ const Header = ({ hideMenu = false }) => {
             <nav className="global-header__nav">
                 <Link to="/home" className="global-header__nav-link">Home</Link>
                 <Link to="/dashboard" className="global-header__nav-link">Complaints</Link>
-                <Link to="/consumption-dashboard" className="global-header__nav-link">Consumption</Link>
+                <Link to="/consumption" className="global-header__nav-link">Consumption</Link>
                 <Link to="/bills" className="global-header__nav-link">Billing</Link>
             </nav>
             <div className="global-header__account" onClick={handleAccountClick}>

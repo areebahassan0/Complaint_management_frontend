@@ -540,7 +540,7 @@ const ConsumptionDashboard = () => {
 
   return (
     <div className="homepage-card">
-      <h1 className="homepage-title" style={{ textAlign: 'center', marginBottom: '20px' }}>
+      <h1 className="homepage-title" style={{ textAlign: 'center', marginBottom: '20px', color: '#fff' }}>
         Energy Consumption Overview
       </h1>
       <div className="d-flex justify-content-center mb-4">
@@ -569,39 +569,41 @@ const ConsumptionDashboard = () => {
         {activeTab === 'daily' && !loading && !error && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '100%' }}>
             {/* Bar Chart Section */}
-            <div style={{ background: '#181c2a', borderRadius: 8, padding: 24, color: '#fff' }}>
+            <div style={{ background: '#181c2a', borderRadius: 8, padding: 24, color: '#fff', maxWidth: 1500, margin: '0 auto', width: '100%' }}>
               <h3 className="flex items-center gap-2 mb-4">
                 <BarChart size={20} /> Daily Consumption Overview
               </h3>
-              <ResponsiveContainer width="100%" height={220}>
-                <BarChart 
-                  data={dailyData} 
-                  margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
-                  onClick={(e) => e && e.activePayload && handleBarClick(e.activePayload[0].payload)}
-                >
-                  <CartesianGrid strokeDasharray="3 3" stroke="#444" />
-                  <XAxis 
-                    dataKey="date" 
-                    stroke="#fff"
-                    tickFormatter={(date) => new Date(date).toLocaleDateString()}
-                  />
-                  <YAxis stroke="#fff" />
-                  <Tooltip 
-                    labelFormatter={(date) => new Date(date).toLocaleDateString()}
-                    formatter={(value) => [`${Number(value).toFixed(2)} kWh`, 'Total Consumption']}
-                    contentStyle={{ background: '#23263a', border: 'none', borderRadius: '8px' }}
-                    itemStyle={{ color: '#fff' }}
-                    labelStyle={{ color: '#94A3B8' }}
-                  />
-                  <Legend />
-                  <Bar 
-                    dataKey="total" 
-                    fill="#8884d8" 
-                    name="Total Consumption"
-                    cursor="pointer"
-                  />
-                </BarChart>
-              </ResponsiveContainer>
+              <div style={{ minWidth: 1500 }}>
+                <ResponsiveContainer width="100%" height={220}>
+                  <BarChart 
+                    data={dailyData} 
+                    margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
+                    onClick={(e) => e && e.activePayload && handleBarClick(e.activePayload[0].payload)}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" stroke="#444" />
+                    <XAxis 
+                      dataKey="date" 
+                      stroke="#fff"
+                      tickFormatter={(date) => new Date(date).toLocaleDateString()}
+                    />
+                    <YAxis stroke="#fff" />
+                    <Tooltip 
+                      labelFormatter={(date) => new Date(date).toLocaleDateString()}
+                      formatter={(value) => [`${Number(value).toFixed(2)} kWh`, 'Total Consumption']}
+                      contentStyle={{ background: '#23263a', border: 'none', borderRadius: '8px' }}
+                      itemStyle={{ color: '#fff' }}
+                      labelStyle={{ color: '#94A3B8' }}
+                    />
+                    <Legend />
+                    <Bar 
+                      dataKey="total" 
+                      fill="#8884d8" 
+                      name="Total Consumption"
+                      cursor="pointer"
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
               <div style={{ textAlign: 'center', marginTop: '10px', color: '#aaa', fontSize: '0.9em' }}>
                 Click on any bar to see appliance breakdown
               </div>
@@ -739,45 +741,47 @@ const ConsumptionDashboard = () => {
         {activeTab === 'monthly' && !loading && !error && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '100%' }}>
             {/* Bar Chart Section */}
-            <div style={{ background: '#181c2a', borderRadius: 8, padding: 24, color: '#fff' }}>
+            <div style={{ background: '#181c2a', borderRadius: 8, padding: 24, color: '#fff', maxWidth: 1500, margin: '0 auto', width: '100%' }}>
               <h3 className="flex items-center gap-2 mb-4">
                 <BarChart size={20} /> Monthly Consumption Overview
               </h3>
-              <ResponsiveContainer width="100%" height={220}>
-                <BarChart 
-                  data={monthlyData} 
-                  margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
-                  onClick={(e) => e && e.activePayload && handleBarClick(e.activePayload[0].payload)}
-                >
-                  <CartesianGrid strokeDasharray="3 3" stroke="#444" />
-                  <XAxis 
-                    dataKey="month" 
-                    stroke="#fff"
-                    tickFormatter={(month) => {
-                      const date = new Date(month);
-                      return date.toLocaleDateString('default', { month: 'short', year: '2-digit' });
-                    }}
-                  />
-                  <YAxis stroke="#fff" />
-                  <Tooltip 
-                    labelFormatter={(month) => {
-                      const date = new Date(month);
-                      return date.toLocaleDateString('default', { month: 'long', year: 'numeric' });
-                    }}
-                    formatter={(value) => [`${Number(value).toFixed(2)} kWh`, 'Total Consumption']}
-                    contentStyle={{ background: '#23263a', border: 'none', borderRadius: '8px' }}
-                    itemStyle={{ color: '#fff' }}
-                    labelStyle={{ color: '#94A3B8' }}
-                  />
-                  <Legend />
-                  <Bar 
-                    dataKey="total" 
-                    fill="#8884d8" 
-                    name="Total Consumption"
-                    cursor="pointer"
-                  />
-                </BarChart>
-              </ResponsiveContainer>
+              <div style={{ minWidth: 1500 }}>
+                <ResponsiveContainer width="100%" height={220}>
+                  <BarChart 
+                    data={monthlyData} 
+                    margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
+                    onClick={(e) => e && e.activePayload && handleBarClick(e.activePayload[0].payload)}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" stroke="#444" />
+                    <XAxis 
+                      dataKey="month" 
+                      stroke="#fff"
+                      tickFormatter={(month) => {
+                        const date = new Date(month);
+                        return date.toLocaleDateString('default', { month: 'short', year: '2-digit' });
+                      }}
+                    />
+                    <YAxis stroke="#fff" />
+                    <Tooltip 
+                      labelFormatter={(month) => {
+                        const date = new Date(month);
+                        return date.toLocaleDateString('default', { month: 'long', year: 'numeric' });
+                      }}
+                      formatter={(value) => [`${Number(value).toFixed(2)} kWh`, 'Total Consumption']}
+                      contentStyle={{ background: '#23263a', border: 'none', borderRadius: '8px' }}
+                      itemStyle={{ color: '#fff' }}
+                      labelStyle={{ color: '#94A3B8' }}
+                    />
+                    <Legend />
+                    <Bar 
+                      dataKey="total" 
+                      fill="#8884d8" 
+                      name="Total Consumption"
+                      cursor="pointer"
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
               <div style={{ textAlign: 'center', marginTop: '10px', color: '#aaa', fontSize: '0.9em' }}>
                 Click on any bar to see appliance breakdown
               </div>
@@ -859,7 +863,14 @@ const ConsumptionDashboard = () => {
             )}
           </div>
         )}
-        {activeTab === 'summary' && !loading && !error && renderEnhancedSummary()}
+        {activeTab === 'summary' && !loading && !error && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '100%' }}>
+            {/* Summary Section */}
+            <div style={{ background: '#181c2a', borderRadius: 8, padding: 24, color: '#fff', maxWidth: 1500, margin: '0 auto', width: '100%', minWidth: 1500 }}>
+              {renderEnhancedSummary()}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
