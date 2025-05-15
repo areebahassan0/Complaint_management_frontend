@@ -254,3 +254,99 @@ select {
   flex-direction: column;
   align-items: stretch;
 }
+
+.lodge-complaint-container {
+  max-width: 600px;
+  margin: 60px auto 0 auto;
+  padding: 32px 24px 40px 24px;
+  background: rgba(255,255,255,0.98);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(44,62,80,0.10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Poppins', 'Inter', Arial, sans-serif;
+}
+
+.lodge-complaint-header {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1976d2;
+  text-align: center;
+  margin-bottom: 32px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 12px rgba(44,62,80,0.10);
+}
+
+.lodge-complaint-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.lodge-complaint-btn {
+  background: #232b7a;
+  color: #fff;
+  border: 2px solid #1976d2;
+  border-radius: 22px;
+  padding: 12px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  box-shadow: none;
+  outline: none;
+}
+.lodge-complaint-btn.active, .lodge-complaint-btn:hover {
+  background: #1976d2;
+  color: #fff;
+  border-color: #1976d2;
+}
+
+.lodge-complaint-form-card {
+  width: 100%;
+  background: #f8faff;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px rgba(44,62,80,0.08);
+  padding: 32px 20px 24px 20px;
+  margin-top: 18px;
+}
+
+.lodge-complaint-label {
+  font-weight: 600;
+  color: #232b7a;
+  margin-bottom: 8px;
+  display: block;
+  font-size: 1.05rem;
+}
+
+.lodge-complaint-input, .lodge-complaint-textarea, .lodge-complaint-select {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1.5px solid #d1d8e0;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  transition: border 0.2s;
+  background: #fff;
+}
+.lodge-complaint-input:focus, .lodge-complaint-textarea:focus, .lodge-complaint-select:focus {
+  border: 1.5px solid #1976d2;
+  outline: none;
+}
+
+@media (max-width: 700px) {
+  .lodge-complaint-container {
+    max-width: 98vw;
+    padding: 12px 2vw 24px 2vw;
+  }
+  .lodge-complaint-header {
+    font-size: 2rem;
+  }
+  .lodge-complaint-btn-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

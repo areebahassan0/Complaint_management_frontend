@@ -64,8 +64,9 @@ const IncorrectReading = () => {
   };
 
   return (
+    <div className="form-container">
     <form  onSubmit={handleSubmit}>
-      <h2>Incorrect Reading Complaint</h2>
+      <h2 className="homepage-title">Incorrect Reading Complaint</h2>
 
       <h3 className="small-slim-heading">The meter reading on the bill doesn't match the actual reading</h3>
 
@@ -142,10 +143,11 @@ const IncorrectReading = () => {
         />
       </div>
 
-      <button type="submit" className="homepage-button">
+      <button type="submit" className="submit-button">
         Submit Complaint
       </button>
     </form>
+    </div>
   );
 };
 

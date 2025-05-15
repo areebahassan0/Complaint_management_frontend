@@ -91,8 +91,9 @@ const PhaseComplaint = () => {
 }
   
   return (
+    <div className="form-container">
     <form onSubmit={handleSubmit}>
-      <h2>Phase Complaint Form</h2>
+      <h2  className="homepage-title">Phase Complaint Form</h2>
 
       <h3 className="small-slim-heading">
         Single phase outage, phase failure, or imbalance disrupts power or appliance function
@@ -230,6 +231,7 @@ const PhaseComplaint = () => {
         Submit Complaint
       </button>
     </form>
+    </div>
   );
 };
 

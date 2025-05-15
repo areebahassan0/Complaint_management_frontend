@@ -56,8 +56,9 @@ const MeterIssue = () => {
    
 
   return (
+    <div className="form-container">
     <form onSubmit={handleSubmit}>
-      <h2>Meter Issue Complaint</h2>
+      <h2 className="homepage-title">Meter Issue Complaint</h2>
       
       <h3 className="small-slim-heading">The meter itself is malfunctioning and producing incorrect data.</h3>
 
@@ -115,10 +116,11 @@ const MeterIssue = () => {
         {attachedFile && <p>Attached File: {attachedFile.name}</p>}
       </div>
 
-      <button type="submit" className="homepage-button">
+      <button type="submit" className="submit-button">
         Submit Complaint
       </button>
     </form>
+    </div>
   );
 };
 

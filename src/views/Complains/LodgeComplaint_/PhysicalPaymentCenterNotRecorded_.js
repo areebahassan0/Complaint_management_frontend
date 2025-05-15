@@ -57,85 +57,85 @@ const PhysicalPaymentCenterNotRecorded = ({ subType }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="form-container">
+    <form onSubmit={handleSubmit}>
         <h2 className="homepage-title">{subType} Physical Payment Center Complaint</h2>
-        <h3 className="small-slim-heading">Payment made at a payment center is not recorded</h3>
-        {/* Payment Date */}
-        <div className="form-group">
-          <label htmlFor="paymentDate">Payment Date</label>
-          <input
-            type="date"
-            id="paymentDate"
-            value={paymentDate}
-            onChange={(e) => setPaymentDate(e.target.value)}
-            required
-          />
-        </div>
+      <h3 className="small-slim-heading">Payment made at a payment center is not recorded</h3>
+      {/* Payment Date */}
+      <div className="form-group">
+        <label htmlFor="paymentDate">Payment Date</label>
+        <input
+          type="date"
+          id="paymentDate"
+          value={paymentDate}
+          onChange={(e) => setPaymentDate(e.target.value)}
+          required
+        />
+      </div>
 
-        {/* Payment Amount */}
-        <div className="form-group">
-          <label htmlFor="paymentAmount">Payment Amount</label>
-          <input
-            type="number"
-            id="paymentAmount"
-            value={paymentAmount}
-            onChange={(e) => setPaymentAmount(e.target.value)}
-            required
-          />
-        </div>
+      {/* Payment Amount */}
+      <div className="form-group">
+        <label htmlFor="paymentAmount">Payment Amount</label>
+        <input
+          type="number"
+          id="paymentAmount"
+          value={paymentAmount}
+          onChange={(e) => setPaymentAmount(e.target.value)}
+          required
+        />
+      </div>
 
-        {/* Payment Center Location */}
-        <div className="form-group">
-          <label htmlFor="paymentCenterLocation">Payment Center Location</label>
-          <input
-            type="text"
-            id="paymentCenterLocation"
-            value={paymentCenterLocation}
-            onChange={(e) => setPaymentCenterLocation(e.target.value)}
-            required
-          />
-        </div>
+      {/* Payment Center Location */}
+      <div className="form-group">
+        <label htmlFor="paymentCenterLocation">Payment Center Location</label>
+        <input
+          type="text"
+          id="paymentCenterLocation"
+          value={paymentCenterLocation}
+          onChange={(e) => setPaymentCenterLocation(e.target.value)}
+          required
+        />
+      </div>
 
-        {/* Receipt Number (Digits Only) */}
-        <div className="form-group">
-          <label htmlFor="receiptNumber">Receipt Number</label>
-          <input
-            type="number"
-            id="receiptNumber"
-            value={receiptNumber}
-            onChange={(e) => setReceiptNumber(e.target.value)}
-            required
-          />
-        </div>
+      {/* Receipt Number (Digits Only) */}
+      <div className="form-group">
+        <label htmlFor="receiptNumber">Receipt Number</label>
+        <input
+          type="number"
+          id="receiptNumber"
+          value={receiptNumber}
+          onChange={(e) => setReceiptNumber(e.target.value)}
+          required
+        />
+      </div>
 
-        {/* Payment Receipt */}
-        <div className="form-group">
-          <label htmlFor="paymentProof">Upload Payment Receipt</label>
-          <input
-            type="file"
-            id="paymentProof"
-            onChange={handleFileChange}
-            required
-          />
-        </div>
+      {/* Payment Receipt */}
+      <div className="form-group">
+        <label htmlFor="paymentProof">Upload Payment Receipt</label>
+        <input
+          type="file"
+          id="paymentProof"
+          onChange={handleFileChange}
+          required
+        />
+      </div>
 
-        {/* Description */}
-        <div className="form-group">
-          <label htmlFor="description">Description (Optional)</label>
-          <textarea
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="Provide additional details..."
-            rows="4"
-          />
-        </div>
+      {/* Description */}
+      <div className="form-group">
+        <label htmlFor="description">Description (Optional)</label>
+        <textarea
+          id="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Provide additional details..."
+          rows="4"
+        />
+      </div>
 
-        <button type="submit" className="homepage-button">
-          Submit Complaint
-        </button>
-      </form>
+        <button type="submit" className="submit-button">
+        Submit Complaint
+      </button>
+    </form>
     </div>
   );
 };

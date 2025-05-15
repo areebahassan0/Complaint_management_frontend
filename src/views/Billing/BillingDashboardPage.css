@@ -1,0 +1,7 @@
+.dashboard-container {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Add any additional styles needed for the billing dashboard */ 

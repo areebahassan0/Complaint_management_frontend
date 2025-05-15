@@ -16,7 +16,7 @@ import ForgetPassword from './views/Auth/ForgetPass';
 import OTPVerificationPage from './views/Auth/OTPVerification';
 import ChangePassword from './views/Auth/ChangePassword';
 import HomePage from './views/Home/HomePage'
-import BillingDashboardPage from './views/Dashboard/BillingDashboardPage'
+import BillingDashboardPage from './views/Billing/BillingDashboardPage'
 import PayYourBill from './views/Billing/PayBill/PayYourBill';
 function App() {
     return (

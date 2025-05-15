@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
+import "./Header.css";
 
 const Header = ({ hideMenu = false }) => {
     const navigate = useNavigate();
@@ -23,7 +24,6 @@ const Header = ({ hideMenu = false }) => {
                 <Link to="/dashboard" className="global-header__nav-link">Complaints</Link>
                 <Link to="/consumption-dashboard" className="global-header__nav-link">Consumption</Link>
                 <Link to="/bills" className="global-header__nav-link">Billing</Link>
-                <Link to="/profile" className="global-header__nav-link">Profile</Link>
             </nav>
             <div className="global-header__account" onClick={handleAccountClick}>
                 <svg

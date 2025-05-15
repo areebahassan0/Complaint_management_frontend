@@ -101,8 +101,9 @@ const VoltageComplaint = () => {
 }
 
   return (
+    <div className="form-container">
     <form onSubmit={handleSubmit}>
-      <h2>Voltage Complaint Form</h2>
+      <h2  className="homepage-title">Voltage Complaint Form</h2>
       <h3 className="small-slim-heading">Low, high, or fluctuating voltage impacts appliances</h3>
       {/* Date of Voltage Issue */}
       <div className="form-group">
@@ -273,6 +274,7 @@ const VoltageComplaint = () => {
         Submit Complaint
       </button>
     </form>
+    </div>
   );
 
 

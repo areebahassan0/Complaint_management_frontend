@@ -57,8 +57,9 @@ const UnexplainedCharges = () => {
 
 
   return (
+    <div className="form-container">
     <form  onSubmit={handleSubmit}>
-      <h2>Unexplained Charges Complaint Form</h2>
+      <h2   className="homepage-title" >Unexplained Charges Complaint Form</h2>
       <h3 className="small-slim-heading">Excessive or unclear additional fees, taxes, or service charges added to the bill</h3>
       {/* Type of Surcharges and Fees */}
       <div className="form-group">
@@ -157,6 +158,7 @@ const UnexplainedCharges = () => {
         Submit Complaint
       </button>
     </form>
+    </div>
   );
 };
 
