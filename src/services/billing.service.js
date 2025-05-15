@@ -36,6 +36,21 @@ export const getUnpaidBills = async () => {
     }
 };
 
+export const getPackages = async () => {
+    const token = getAccessToken();
+    try {
+        const headers = {
+            Authorization: `Bearer ${token}`,
+        };
+        
+        const response = await GET(apiUrl.get_packages, null, headers);
+        return { status: true, data: response.data || [] };
+    } catch (error) {
+        console.error('Error fetching packages:', error);
+        return { status: false, message: 'Failed to fetch packages.', data: [] };
+    }
+};
+
 export const updateMethod = async (data) => {
     const token = getAccessToken();
     try {

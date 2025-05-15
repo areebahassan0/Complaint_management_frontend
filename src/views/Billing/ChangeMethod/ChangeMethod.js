@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getBillingMethod, updateMethod, getUnpaidBills } from '../../../services/billing.service';
+import { getBillingMethod, updateMethod, getUnpaidBills, getPackages } from '../../../services/billing.service';
 
 const ChangeMethod = () => {
   const [currentMethod, setCurrentMethod] = useState(null);
@@ -11,13 +11,7 @@ const ChangeMethod = () => {
   const [frequency, setFrequency] = useState(1);
   const [showSuccess, setShowSuccess] = useState(false);
   const [unpaidBills, setUnpaidBills] = useState([]);
-
-  // Sample packages data - Replace with actual API data
-  const packages = [
-    { id: 1, name: 'Basic Package', price: '50.00', description: 'Basic electricity package' },
-    { id: 2, name: 'Premium Package', price: '100.00', description: 'Premium electricity package' },
-    { id: 3, name: 'Business Package', price: '200.00', description: 'Business electricity package' }
-  ];
+  const [packages, setPackages] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -45,6 +39,14 @@ const ChangeMethod = () => {
         }
       } else {
         throw new Error(methodResponse.message);
+      }
+
+      // Fetch packages
+      const packagesResponse = await getPackages();
+      if (packagesResponse.status) {
+        setPackages(packagesResponse.data);
+      } else {
+        console.error('Warning: Failed to load packages', packagesResponse.message);
       }
 
       // Fetch unpaid bills
@@ -208,6 +210,8 @@ const ChangeMethod = () => {
               {packages.map((pkg) => (
                 <option key={pkg.id} value={pkg.id}>
                   {pkg.name} - {pkg.price} Rs. ({pkg.description})
+                  {pkg.voltage_included ? ` - ${pkg.voltage_included}V included` : ''}
+                  {pkg.duration_months ? ` - ${pkg.duration_months} month${pkg.duration_months > 1 ? 's' : ''}` : ''}
                 </option>
               ))}
             </select>
