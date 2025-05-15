@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { BASE_URL } from '../utils/constants';
 import { apiUrl } from '../utils/constants';
+import { logout } from './Auth.service';
+
 // Base axios instance
 const api = axios.create({
     baseURL: BASE_URL,
@@ -8,6 +10,18 @@ const api = axios.create({
         'Content-Type': 'application/json',
     },
 });
+
+// Add response interceptor to handle 401 errors
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response?.status === 401) {
+            // Token is expired or invalid, logout user
+            logout();
+        }
+        return Promise.reject(error);
+    }
+);
 
 // Function to get the full URL for an endpoint
 const getFullUrl = (endpoint) => `${BASE_URL}${endpoint}`;

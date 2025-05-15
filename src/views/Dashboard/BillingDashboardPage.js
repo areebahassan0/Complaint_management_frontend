@@ -67,29 +67,7 @@ const BillingDashboardPage = () => {
       { label: 'Pay Your Bill', path: '/pay-bill' },
       {
         label: 'Change Mode of Payment',
-        submenu: [
-          { 
-            label: createLabel('Yearly', currentMethod === 'Yearly'),
-            onClick: () => handleChangeMethod('Yearly')
-          },
-          { 
-            label: createLabel('Monthly', currentMethod === 'Monthly'),
-            onClick: () => handleChangeMethod('Monthly')
-          },
-          {
-            label: createLabel('Installments', currentMethod === 'Installments'),
-            submenu: [
-              { 
-                label: '15 Days Installments',
-                onClick: () => handleChangeMethod('15-Days-Installments')
-              },
-              { 
-                label: '10 Days Installments',
-                onClick: () => handleChangeMethod('10-Days-Installments')
-              }
-            ]
-          }
-        ]
+        path: '/change-billing-method'
       },
       { label: 'View Billing History', path: '/billing-history' }
     ];

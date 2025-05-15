@@ -18,6 +18,10 @@ import ChangePassword from './views/Auth/ChangePassword';
 import HomePage from './views/Home/HomePage'
 import BillingDashboardPage from './views/Billing/BillingDashboardPage'
 import PayYourBill from './views/Billing/PayBill/PayYourBill';
+    import ChangeMethod from './views/Billing/ChangeMethod/ChangeMethod';
+    import ConsumptionDashboard from './views/Consumption/ConsumptionDashboard';
+    import Payment from './views/Billing/PayBill/Payment';
+
 function App() {
     return (
         <Router>
@@ -32,6 +36,9 @@ function App() {
                 <Route path="/track-complaints" element={<DashboardLayout><TrackComplaints /></DashboardLayout>} />
                 <Route path="/lodge-complaint" element={<DashboardLayout><LodgeComplaint /></DashboardLayout>} />
                 <Route path="/pay-bill" element={<DashboardLayout><PayYourBill /></DashboardLayout>} />
+                <Route path="/payment" element={<DashboardLayout><Payment /></DashboardLayout>} />
+                <Route path="/change-billing-method" element={<DashboardLayout><ChangeMethod /></DashboardLayout>} />
+                <Route path="/consumption" element={<DashboardLayout><ConsumptionDashboard /></DashboardLayout>} />
                 {/* Auth Route */}
                 <Route path="/signin" element={<AuthLayoutRoute><Login /></AuthLayoutRoute>} />
                 <Route path="/signup" element={<AuthLayoutRoute><Signup /></AuthLayoutRoute>} />
@@ -39,7 +46,7 @@ function App() {
                 <Route path="/otp-verification" element={<AuthLayoutRoute><OTPVerificationPage /></AuthLayoutRoute>} />
                 <Route path="/change-password" element={<AuthLayoutRoute><ChangePassword /></AuthLayoutRoute>} />
                 {/* Redirect to Dashboard */}
-                <Route path="*" element={<Navigate to="/dashboard" />} />
+                <Route path="*" element={<Navigate to="/home" />} />
             </Routes>
         </Router>
     );

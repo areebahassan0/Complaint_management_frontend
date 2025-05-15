@@ -1,17 +1,23 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { logout } from "../services/Auth.service";
 import "./Header.css";
 
 const Header = ({ hideMenu = false }) => {
     const navigate = useNavigate();
-    const isAuth = false; // Replace with actual authentication check later
+    const isAuth = localStorage.getItem('access_token') !== null; // Check if user is authenticated
 
     const handleAccountClick = () => {
         if (isAuth) {
-            navigate("/home");
+            navigate("/signin");
+            // Show a dropdown or handle account actions
         } else {
             navigate("/signin");
         }
+    };
+
+    const handleLogout = () => {
+        logout();
     };
 
     return (
@@ -22,7 +28,7 @@ const Header = ({ hideMenu = false }) => {
             <nav className="global-header__nav">
                 <Link to="/home" className="global-header__nav-link">Home</Link>
                 <Link to="/dashboard" className="global-header__nav-link">Complaints</Link>
-                <Link to="/consumption-dashboard" className="global-header__nav-link">Consumption</Link>
+                <Link to="/consumption" className="global-header__nav-link">Consumption</Link>
                 <Link to="/bills" className="global-header__nav-link">Billing</Link>
             </nav>
             <div className="global-header__account" onClick={handleAccountClick}>

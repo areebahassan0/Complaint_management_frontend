@@ -22,8 +22,16 @@ export const apiUrl = {
     //ChatBot
     sendMessage:'chatbot/chat/',
     // Billing
-    get_current_method: 'billing/method/',
-    update_method:'billing/method/change/',
+    get_current_method: 'api/billing/method/',
+    get_unpaid_bills: 'api/billing/unpaid/',
+    update_method:'api/billing/method/change/',
+    get_packages: 'api/billing/packages/',
     // Additional endpoints for other functionalities can be added here
+    get_daily_consumption: 'api/consumption/daily/',
+    get_monthly_consumption: 'api/consumption/monthly/',
+    get_total_summary: 'api/consumption/summary/',
+    get_daily_summary: 'api/consumption/daily-summary/',
+    get_monthly_summary: 'api/consumption/monthly-summary/',
+    get_energy_summary: 'api/consumption/energy-summary/',
 };
 

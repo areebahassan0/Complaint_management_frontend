@@ -129,3 +129,15 @@ export const changePassword = async ({ email, new_password, confirm_password }) 
         };
     }
 };
+
+// Clear tokens from localStorage
+export const clearTokens = () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+};
+
+// Logout function
+export const logout = () => {
+    clearTokens();
+    window.location.href = '/signin'; // Force redirect to login page
+};
